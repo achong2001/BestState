@@ -6,11 +6,11 @@ execute:
   echo: true
 
 book:
-  title: "YOUR PROJECT TITLE"
+  title: "The Best US State"
   author:
-    - AUTHOR1 (UNI1)
-    - AUTHOR2 (UNI2)
-  repo-url: https://github.com/YOUR_GITHUB_ACCOUNT/REPO_NAME
+    - Youjia Li (yl5542)
+    - Allan Chong (ac5439)
+  repo-url: https://github.com/achong2001/BestState
   date: today
   page-footer:
     right: |
