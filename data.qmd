@@ -2,71 +2,59 @@
 
 ## Technical Description
 
-> The dataset is collected from multiple sources, including U.S.Census Bureau, Federal Bureau of Investigation, Centers for Disease Control and Prevention, US Department of Commerce, and Mental Health America. In order answer the broad question of which is the best states within U.S to live in, we have chose and we will assess indicators of different aspects that can represent the living standards, including population demographics, health, Economic status, safety, education attainment and employment status in 50 states in the U.S. All the indicators are from year 2022, given that it is the most recent full-year record. 
+> In order answer the broad question of which is the best states within U.S to live in, we will assess factors across different living aspects that can provide indication od desirability for different households, which include economics, education, health, and safety indicators. Thus we have collected the data from multiple sources(U.S.Census Bureau, Federal Bureau of Investigation, Centers for Disease Control and Prevention, US Department of Commerce, and Mental Health America) where each being the authority on the given asepct.
 
-> Below are the description for each columns in the dataset including their original sources, grouped by indicators of each aspects:
+> The dataset has 50 rows and 13 columns, where each rows repersent each states in the United States, excluding minor island, and each column repersent each indictor of the living condition in each state(e.g population, crime rates, high school graudation rates.) All the data are collected from the year of 2022, given that this is the most recent full year. 
+
+> POPULATION, U18, OVER60, POVERTY, HSGRADUATE, EMPLOYMENT, and GINI columns are gathered from U.S. Census Bureau for 50 states across United States. All the columns here are presented in termns of number of population excpet for GINI, which is an index data that goes from 0 to 1  The data from U.S. Census Bureau are collected through the census survey each year, such that the result are updated every 12 months.
+
+> OBESE and INFM columns are collected from cdc, the Centers for Disease Control and Prevention for 50 states across United States. These two columns are presented in terms of the percentage. Their data are collected from various health insititutions including hospitals and local doctor's office. The data is nomrally updated yearly.
+
+> The MENTAL column is collected from Mental Health America. This is a ranking goes from 1- 51. The ranking is Made up by 7 measures combined,including Adults with Any Mental Illness (AMI), Adults with Substance Use Disorder in the Past Year, Adults with Serious Thoughts of Suicide, Adults with AMI who Did Not Receive Treatment, Adults with AMI Reporting Unmet Need, Adults with AMI who are Uninsured, and Adults with Cognitive Disability Who Could Not See a Doctor Due to Costs. States that are ranked 1-10 have lower prevalence of mental illness and higher rates of access to care for adults. States that are ranked 39-51 indicate that adults have higher prevalence of mental illness and lower rates of access to care.All of the data presented in the MHA is collected through the MHA Online Screening Program.
+
+> The INCOME column is collected from Bureau of Economic Analysis. It presents the per capita personal income in U.S dollars across 50 states. Most data from bea are sourced from surveies and sponsored by fedueral agencies. 
+
+>The CRIME column is collected from Federal Bureau of Investigation. Note that this column is not in percentage or in numbers while it present the number of reperted crime per 100,000 of the population. The data in FBI are collected from the monthly reports from their agencies. 
+
+> Below are the description for each columns including their original sources.
 
 STATES: Names of the 50 states in the U.S, excluding minor islands.
 
-Demography Indicators:
-
 POPULATION: Number of population in each state of United States as of 2022.
-Original source: U.S. Census Bureau.
-https://data.census.gov/table/ACSST1Y2022.S1701?q=poverty%20by%20state
+Original source:https://data.census.gov/table/ACSST1Y2022.S1701?q=poverty%20by%20state
 
 U18: Number of population who is under the age of 18 in each state of United States as of 2022.
-Original source: U.S. Census Bureau.
-https://data.census.gov/table/ACSST1Y2022.S1701?q=poverty%20by%20state
+Original source: https://data.census.gov/table/ACSST1Y2022.S1701?q=poverty%20by%20state
 
-OVER60:Number of population who is over the age of 60 in each state of United States as of 2022.
-Original source: U.S. Census Bureau.
-https://data.census.gov/table/ACSST1Y2022.S1701?q=poverty%20by%20state
+OVER60: Number of population who is over the age of 60 in each state of United States as of 2022.
+Original source:https://data.census.gov/table/ACSST1Y2022.S1701?q=poverty%20by%20state
 
-Health Indicators:
-
-OBESE:Percentage of adults with obesity in the United States as of 2022 by state.
-Original source: cdc.gov.
-https://www.statista.com/statistics/378988/us-obesity-rate-by-state/
+OBESE: Percentage of adults with obesity in the United States as of 2022 by state.
+Original source: https://www.statista.com/statistics/378988/us-obesity-rate-by-state/
 
 INFM: The infant mortality rates by states in 2022. 
-Original source: cdc.gov.
-https://www.cdc.gov/nchs/data/vsrr/vsrr033.pdf
+Original source:https://www.cdc.gov/nchs/data/vsrr/vsrr033.pdf
 
-MENTAL: The ranking for Adult mental health by states in 2022. Made up by 7 measures combined. States that are ranked 1-10 have lower prevalence of mental illness and higher rates of access to care for adults. States that are ranked 39-51 indicate that adults have higher prevalence of mental illness and lower rates of access to care.
-Original Source:Mental Health America
-https://mhanational.org/issues/2022/mental-health-america-adult-data
-
-Economics Indicators:
+MENTAL: The ranking for Adult mental health by states in 2022. 
+Original Source: https://mhanational.org/issues/2022/mental-health-america-adult-data
 
 INCOME: Personal income Per capita in the United States in 2022, by state (in U.S. dollars).
-Original source: bea.gov.
-https://www.statista.com/statistics/303555/us-per-capita-personal-income/
+Original source: https://www.statista.com/statistics/303555/us-per-capita-personal-income/
 
 POVERTY: percentage of people below poverty in the U.S by states in 2022.
-Original source: U.S. Census Bureau.
-https://data.census.gov/table/ACSST1Y2022.S1701?q=poverty%20by%20state
+Original source: https://data.census.gov/table/ACSST1Y2022.S1701?q=poverty%20by%20state
 
-GINI: Gini index of income inequality in the U.S by states in 2022. Gini index is a measure for income distribution, with 0 repersent the perfect equality and 1 repersent the perfect inequality.
-Original source: U.S. Census Bureau.: U.S. Census Bureau.
-https://data.census.gov/table?q=gini%20index&g=010XX00US&y=2021
-
-Safety Indicator:
+GINI: The Gini index of income inequality in the U.S by states in 2022. 
+Original source: https://data.census.gov/table?q=gini%20index&g=010XX00US&y=2021
 
 CRIME: Reported violent crime rate in the United States in 2022, by state (per 100,000 of the population). 
-Original source: fbi.gov
-https://www.statista.com/statistics/200445/reported-violent-crime-rate-in-the-us-states/
-
-Education Indicator:
+Original source: https://www.statista.com/statistics/200445/reported-violent-crime-rate-in-the-us-states/
 
 HSGRADUATE:Number of population with high school diploma or equivalence in each state of United States as of 2022.
-Original source: U.S. Census Bureau.
-https://data.census.gov/table/ACSST1Y2022.S1701?q=poverty%20by%20state
-
-Employment Indicator:
+Original source: https://data.census.gov/table/ACSST1Y2022.S1701?q=poverty%20by%20state
 
 EMPLOYMENT: Number of employed population in each state of United States as of 2022.
-Original source: U.S. Census Bureau.
-https://data.census.gov/table/ACSST1Y2022.S1701?q=poverty%20by%20state
+Original source: https://data.census.gov/table/ACSST1Y2022.S1701?q=poverty%20by%20state
 
 
 ## Research Plan
