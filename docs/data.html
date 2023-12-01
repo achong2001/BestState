@@ -142,8 +142,9 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#description" id="toc-description" class="nav-link active" data-scroll-target="#description"><span class="header-section-number">2.1</span> Description</a></li>
-  <li><a href="#missing-value-analysis" id="toc-missing-value-analysis" class="nav-link" data-scroll-target="#missing-value-analysis"><span class="header-section-number">2.2</span> Missing value analysis</a></li>
+  <li><a href="#technical-description" id="toc-technical-description" class="nav-link active" data-scroll-target="#technical-description"><span class="header-section-number">2.1</span> Technical Description</a></li>
+  <li><a href="#research-plan" id="toc-research-plan" class="nav-link" data-scroll-target="#research-plan"><span class="header-section-number">2.2</span> Research Plan</a></li>
+  <li><a href="#missing-value-analysis" id="toc-missing-value-analysis" class="nav-link" data-scroll-target="#missing-value-analysis"><span class="header-section-number">2.3</span> Missing value analysis</a></li>
   </ul>
 <div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/achong2001/BestState/edit/main/data.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/achong2001/BestState/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
     </div>
@@ -167,12 +168,41 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<section id="description" class="level2" data-number="2.1">
-<h2 data-number="2.1" class="anchored" data-anchor-id="description"><span class="header-section-number">2.1</span> Description</h2>
-<p>askjhgas</p>
+<section id="technical-description" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="technical-description"><span class="header-section-number">2.1</span> Technical Description</h2>
+<p>The dataset is collected from multiple sources, including U.S. Census Bureau, Federal Bureau of Investigation, Centers for Disease Control and Prevention, US Department of Commerce, and Mental Health America. In order answer the broad question of which is the best states within U.S to live in, we have chose and we will assess indicators of different aspects that can represent the living standards, including population demographics, health, Economic status, safety, education attainment and employment status in 50 states in the U.S. All the indicators are from year 2022, given that it is the most recent full-year record.</p>
+<p>Below are the description for each columns in the dataset including their original sources, grouped by indicators of each aspects:</p>
+<p>STATES: Names of the 50 states in the U.S, excluding minor islands.</p>
+<p>Demography Indicators:</p>
+<p>POPULATION: Number of population in each state of United States as of 2022. Original source: U.S. Census Bureau. https://data.census.gov/table/ACSST1Y2022.S1701?q=poverty%20by%20state</p>
+<p>U18: Number of population who is under the age of 18 in each state of United States as of 2022. Original source: U.S. Census Bureau. https://data.census.gov/table/ACSST1Y2022.S1701?q=poverty%20by%20state</p>
+<p>OVER60:Number of population who is over the age of 60 in each state of United States as of 2022. Original source: U.S. Census Bureau. https://data.census.gov/table/ACSST1Y2022.S1701?q=poverty%20by%20state</p>
+<p>Health Indicators:</p>
+<p>OBESE:Percentage of adults with obesity in the United States as of 2022 by state. Original source: cdc.gov. https://www.statista.com/statistics/378988/us-obesity-rate-by-state/</p>
+<p>INFM: The infant mortality rates by states in 2022. Original source: cdc.gov. https://www.cdc.gov/nchs/data/vsrr/vsrr033.pdf</p>
+<p>MENTAL: The ranking for Adult mental health by states in 2022. Made up by 7 measures combined. States that are ranked 1-10 have lower prevalence of mental illness and higher rates of access to care for adults. States that are ranked 39-51 indicate that adults have higher prevalence of mental illness and lower rates of access to care. Original Source:Mental Health America https://mhanational.org/issues/2022/mental-health-america-adult-data</p>
+<p>Economics Indicators:</p>
+<p>INCOME: Personal income Per capita in the United States in 2022, by state (in U.S. dollars). Original source: bea.gov. https://www.statista.com/statistics/303555/us-per-capita-personal-income/</p>
+<p>POVERTY: percentage of people below poverty in the U.S by states in 2022. Original source: U.S. Census Bureau. https://data.census.gov/table/ACSST1Y2022.S1701?q=poverty%20by%20state</p>
+<p>GINI: Gini index of income inequality in the U.S by states in 2022. Gini index is a measure for income distribution, with 0 repersent the perfect equality and 1 repersent the perfect inequality. Original source: U.S. Census Bureau.: U.S. Census Bureau. https://data.census.gov/table?q=gini%20index&amp;g=010XX00US&amp;y=2021</p>
+<p>Safety Indicator:</p>
+<p>CRIME: Reported violent crime rate in the United States in 2022, by state (per 100,000 of the population). Original source: fbi.gov https://www.statista.com/statistics/200445/reported-violent-crime-rate-in-the-us-states/</p>
+<p>Education Indicator:</p>
+<p>HSGRADUATE:Number of population with high school diploma or equivalence in each state of United States as of 2022. Original source: U.S. Census Bureau. https://data.census.gov/table/ACSST1Y2022.S1701?q=poverty%20by%20state</p>
+<p>Employment Indicator:</p>
+<p>EMPLOYMENT: Number of employed population in each state of United States as of 2022. Original source: U.S. Census Bureau. https://data.census.gov/table/ACSST1Y2022.S1701?q=poverty%20by%20state</p>
 </section>
-<section id="missing-value-analysis" class="level2" data-number="2.2">
-<h2 data-number="2.2" class="anchored" data-anchor-id="missing-value-analysis"><span class="header-section-number">2.2</span> Missing value analysis</h2>
+<section id="research-plan" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="research-plan"><span class="header-section-number">2.2</span> Research Plan</h2>
+<blockquote class="blockquote">
+<p>Our current data will provide a baseline answer for our research questions in determining which states are best for specific household circumstances. Economics, education, health, and safety indicators are four of the most important factors that new homeowners would consider. Retirees most likely prefer to live in states with the best health features above all others, so a higher health indicator would include lower crime and poverty rates. Families with children may prioritize education the most, where there are higher rates of high school graduates and under 18 residents in order to provide a more kid-friendly environment. Young couples may prioritize states with higher gini indexes and higher employment rates because they would focus on financial stability at their age to pay off debts and potentially save to have children. Gini index measures the income distribution across the state’s population. A value of 0 represents perfect equality (straight diagonal line) for an equal balance of people in all income brackets whereas a curved line represents imbalance in certain brackets. A value of 1 represents perfect inequality, where only the last person in the entire population gets all of the wealth, thus a straight line is formed at 100% of population.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>Our demographic and peers would lean more towards the category of young couples, where we prioritize financial stability. After visualizing the states that offer the most financial stability from our study, we can then filter our job search on locations based at these states, in which this process will provide us with an improve quality of life.</p>
+</blockquote>
+</section>
+<section id="missing-value-analysis" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="missing-value-analysis"><span class="header-section-number">2.3</span> Missing value analysis</h2>
 
 
 </section>

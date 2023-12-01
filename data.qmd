@@ -71,4 +71,9 @@ https://data.census.gov/table/ACSST1Y2022.S1701?q=poverty%20by%20state
 
 ## Research Plan
 
+> Our current data will provide a baseline answer for our research questions in determining which states are best for specific household circumstances. Economics, education, health, and safety indicators are four of the most important factors that new homeowners would consider. Retirees most likely prefer to live in states with the best health features above all others, so a higher health indicator would include lower crime and poverty rates. Families with children may prioritize education the most, where there are higher rates of high school graduates and under 18 residents in order to provide a more kid-friendly environment. Young couples may prioritize states with higher gini indexes and higher employment rates because they would focus on financial stability at their age to pay off debts and potentially save to have children. Gini index measures the income distribution across the state’s population. A value of 0 represents perfect equality (straight diagonal line) for an equal balance of people in all income brackets whereas a curved line represents imbalance in certain brackets. A value of 1 represents perfect inequality, where only the last person in the entire population gets all of the wealth, thus a straight line is formed at 100% of population.
+
+> Our demographic and peers would lean more towards the category of young couples, where we prioritize financial stability. After visualizing the states that offer the most financial stability from our study, we can then filter our job search on locations based at these states, in which this process will provide us with an improve quality of life.
+
+
 ## Missing value analysis
