@@ -87,4 +87,4 @@ p <- vis_miss(states) +
 print(p)
 ```
 
-> As presented in the graph above, we can see that there is 0% of missing value for each columns and it means that this is a complete dataset. This result is expected due to two reasons: First, this is a rather small dataset with 50 rows and 13 columns so that the data is likely to be avaliable given the size. Second, considering the authority of the sources of data, including fbi, cdc, and U.S. Census Bureau, which gaurenteed the quality and credibility of the data. 
+> As presented in the graph above, we can see that there is 0% of missing value for each columns and it means that this is a complete dataset. This result is expected due to two reasons: First, this is a rather small dataset with 50 rows and 13 columns so that the data is likely to be avaliable given the size. Second, considering the authority of the sources of data, including fbi, cdc, and U.S. Census Bureau, which gaurenteed the quality and credibility of the data.
