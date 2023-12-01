@@ -1,7 +1,74 @@
 # Data
 
-## Description
+## Technical Description
 
-askjhgas
+The dataset is collected from multiple sources, including U.S. Census Bureau, Federal Bureau of Investigation, Centers for Disease Control and Prevention, US Department of Commerce, and Mental Health America. In order answer the broad question of which is the best states within U.S to live in, we have chose and we will assess indicators of different aspects that can represent the living standards, including population demographics, health, Economic status, safety, education attainment and employment status in 50 states in the U.S. All the indicators are from year 2022, given that it is the most recent full-year record. 
+
+Below are the description for each columns in the dataset including their orginal sources, grouped by indicators of each aspects:
+
+STATES: Names of the 50 states in the U.S, excluding minor islands.
+
+Demography Indicators:
+
+POPULATION: Number of population in each state of United States as of 2022.
+Original source: U.S. Census Bureau.
+https://data.census.gov/table/ACSST1Y2022.S1701?q=poverty%20by%20state
+
+U18: Number of population who is under the age of 18 in each state of United States as of 2022.
+Original source: U.S. Census Bureau.
+https://data.census.gov/table/ACSST1Y2022.S1701?q=poverty%20by%20state
+
+OVER60:Number of population who is over the age of 60 in each state of United States as of 2022.
+Original source: U.S. Census Bureau.
+https://data.census.gov/table/ACSST1Y2022.S1701?q=poverty%20by%20state
+
+Health Indicators:
+
+OBESE:Percentage of adults with obesity in the United States as of 2022 by state.
+Original source: cdc.gov.
+https://www.statista.com/statistics/378988/us-obesity-rate-by-state/
+
+INFM: The infant mortality rates by states in 2022. 
+Original source: cdc.gov.
+https://www.cdc.gov/nchs/data/vsrr/vsrr033.pdf
+
+MENTAL: The ranking for Adult mental health by states in 2022. Made up by 7 measures combined. States that are ranked 1-10 have lower prevalence of mental illness and higher rates of access to care for adults. States that are ranked 39-51 indicate that adults have higher prevalence of mental illness and lower rates of access to care.
+Original Source:Mental Health America
+https://mhanational.org/issues/2022/mental-health-america-adult-data
+
+Economics Indicators:
+
+INCOME: Personal income Per capita in the United States in 2022, by state (in U.S. dollars).
+Original source: bea.gov.
+https://www.statista.com/statistics/303555/us-per-capita-personal-income/
+
+POVERTY: percentage of people below poverty in the U.S by states in 2022.
+Original source: U.S. Census Bureau.
+https://data.census.gov/table/ACSST1Y2022.S1701?q=poverty%20by%20state
+
+GINI: Gini index of income inequality in the U.S by states in 2022. Gini index is a measure for income distribution, with 0 repersent the perfect equality and 1 repersent the perfect inequality.
+Original source: U.S. Census Bureau.: U.S. Census Bureau.
+https://data.census.gov/table?q=gini%20index&g=010XX00US&y=2021
+
+Safety Indicator:
+
+CRIME: Reported violent crime rate in the United States in 2022, by state (per 100,000 of the population). 
+Original source: fbi.gov
+https://www.statista.com/statistics/200445/reported-violent-crime-rate-in-the-us-states/
+
+Education Indicator:
+
+HSGRADUATE:Number of population with high school diploma or equivalence in each state of United States as of 2022.
+Original source: U.S. Census Bureau.
+https://data.census.gov/table/ACSST1Y2022.S1701?q=poverty%20by%20state
+
+Employment Indicator:
+
+EMPLOYMENT: Number of employed population in each state of United States as of 2022.
+Original source: U.S. Census Bureau.
+https://data.census.gov/table/ACSST1Y2022.S1701?q=poverty%20by%20state
+
+
+## Research Plan
 
 ## Missing value analysis
