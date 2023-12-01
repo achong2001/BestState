@@ -16,45 +16,36 @@
 
 >The CRIME column is collected from Federal Bureau of Investigation. Note that this column is not in percentage or in numbers while it present the number of reperted crime per 100,000 of the population. The data in FBI are collected from the monthly reports from their agencies. 
 
-> Below are the description for each columns including their original sources.
+> Below are the description for each columns including their original sources:
 
-STATES: Names of the 50 states in the U.S, excluding minor islands.
+>STATES: Names of the 50 states in the U.S, excluding minor islands.
 
-POPULATION: Number of population in each state of United States as of 2022.
-Original source:https://data.census.gov/table/ACSST1Y2022.S1701?q=poverty%20by%20state
+>POPULATION: Number of population in each state of United States as of 2022.
 
-U18: Number of population who is under the age of 18 in each state of United States as of 2022.
-Original source: https://data.census.gov/table/ACSST1Y2022.S1701?q=poverty%20by%20state
+>U18: Number of population who is under the age of 18 in each state of United States as of 2022.
 
-OVER60: Number of population who is over the age of 60 in each state of United States as of 2022.
-Original source:https://data.census.gov/table/ACSST1Y2022.S1701?q=poverty%20by%20state
+>OVER60: Number of population who is over the age of 60 in each state of United States as of 2022.
 
-OBESE: Percentage of adults with obesity in the United States as of 2022 by state.
-Original source: https://www.statista.com/statistics/378988/us-obesity-rate-by-state/
+>POVERTY: percentage of people below poverty in the U.S by states in 2022.
 
-INFM: The infant mortality rates by states in 2022. 
-Original source:https://www.cdc.gov/nchs/data/vsrr/vsrr033.pdf
+>HSGRADUATE:Number of population with high school diploma or equivalence in each state of United States as of 2022.
 
-MENTAL: The ranking for Adult mental health by states in 2022. 
-Original Source: https://mhanational.org/issues/2022/mental-health-america-adult-data
+>EMPLOYMENT: Number of employed population in each state of United States as of 2022.
 
-INCOME: Personal income Per capita in the United States in 2022, by state (in U.S. dollars).
-Original source: https://www.statista.com/statistics/303555/us-per-capita-personal-income/
+>Original source for all above:https://data.census.gov/table/ACSST1Y2022.S1701?q=poverty%20by%20state
 
-POVERTY: percentage of people below poverty in the U.S by states in 2022.
-Original source: https://data.census.gov/table/ACSST1Y2022.S1701?q=poverty%20by%20state
+>OBESE: Percentage of adults with obesity in the United States as of 2022 by state.Original source: https://www.statista.com/statistics/378988/us-obesity-rate-by-state/
 
-GINI: The Gini index of income inequality in the U.S by states in 2022. 
-Original source: https://data.census.gov/table?q=gini%20index&g=010XX00US&y=2021
+>INFM: The infant mortality rates by states in 2022. Original source:https://www.cdc.gov/nchs/data/vsrr/vsrr033.pdf
 
-CRIME: Reported violent crime rate in the United States in 2022, by state (per 100,000 of the population). 
-Original source: https://www.statista.com/statistics/200445/reported-violent-crime-rate-in-the-us-states/
+>MENTAL: The ranking for Adult mental health by states in 2022. Original Source: https://mhanational.org/issues/2022/mental-health-america-adult-data
 
-HSGRADUATE:Number of population with high school diploma or equivalence in each state of United States as of 2022.
-Original source: https://data.census.gov/table/ACSST1Y2022.S1701?q=poverty%20by%20state
+>INCOME: Personal income Per capita in the United States in 2022, by state (in U.S. dollars).Original source: https://www.statista.com/statistics/303555/us-per-capita-personal-income/
 
-EMPLOYMENT: Number of employed population in each state of United States as of 2022.
-Original source: https://data.census.gov/table/ACSST1Y2022.S1701?q=poverty%20by%20state
+>GINI: The Gini index of income inequality in the U.S by states in 2022. Original source: https://data.census.gov/table?q=gini%20index&g=010XX00US&y=2021
+
+>CRIME: Reported violent crime rate in the United States in 2022, by state (per 100,000 of the population). Original source: https://www.statista.com/statistics/200445/reported-violent-crime-rate-in-the-us-states/
+
 
 
 ## Research Plan
