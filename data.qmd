@@ -2,9 +2,9 @@
 
 ## Technical Description
 
-The dataset is collected from multiple sources, including U.S. Census Bureau, Federal Bureau of Investigation, Centers for Disease Control and Prevention, US Department of Commerce, and Mental Health America. In order answer the broad question of which is the best states within U.S to live in, we have chose and we will assess indicators of different aspects that can represent the living standards, including population demographics, health, Economic status, safety, education attainment and employment status in 50 states in the U.S. All the indicators are from year 2022, given that it is the most recent full-year record. 
+> The dataset is collected from multiple sources, including U.S.Census Bureau, Federal Bureau of Investigation, Centers for Disease Control and Prevention, US Department of Commerce, and Mental Health America. In order answer the broad question of which is the best states within U.S to live in, we have chose and we will assess indicators of different aspects that can represent the living standards, including population demographics, health, Economic status, safety, education attainment and employment status in 50 states in the U.S. All the indicators are from year 2022, given that it is the most recent full-year record. 
 
-Below are the description for each columns in the dataset including their original sources, grouped by indicators of each aspects:
+> Below are the description for each columns in the dataset including their original sources, grouped by indicators of each aspects:
 
 STATES: Names of the 50 states in the U.S, excluding minor islands.
 
@@ -72,3 +72,14 @@ https://data.census.gov/table/ACSST1Y2022.S1701?q=poverty%20by%20state
 ## Research Plan
 
 ## Missing value analysis
+
+```{r}
+library(naniar)
+library(ggplot2)
+states <- read.csv("States.csv")
+p <- vis_miss(states) +
+  ggtitle("Percentage of Missing Values by Columns")
+print(p)
+```
+
+> As presented in the graph above, we can see that there is 0% of missing value for each columns and it means that this is a complete dataset. This result is expected due to two reasons: First, this is a rather small dataset with 50 rows and 13 columns so that the data is likely to be avaliable given the size. Second, considering the authority of the sources of data, including fbi, cdc, and U.S. Census Bureau, which gaurenteed the quality and credibility of the data. 
