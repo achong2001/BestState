@@ -4,7 +4,7 @@
 
 The dataset is collected from multiple sources, including U.S. Census Bureau, Federal Bureau of Investigation, Centers for Disease Control and Prevention, US Department of Commerce, and Mental Health America. In order answer the broad question of which is the best states within U.S to live in, we have chose and we will assess indicators of different aspects that can represent the living standards, including population demographics, health, Economic status, safety, education attainment and employment status in 50 states in the U.S. All the indicators are from year 2022, given that it is the most recent full-year record. 
 
-Below are the description for each columns in the dataset including their orginal sources, grouped by indicators of each aspects:
+Below are the description for each columns in the dataset including their original sources, grouped by indicators of each aspects:
 
 STATES: Names of the 50 states in the U.S, excluding minor islands.
 
