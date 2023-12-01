@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -170,27 +204,72 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="technical-description" class="level2" data-number="2.1">
 <h2 data-number="2.1" class="anchored" data-anchor-id="technical-description"><span class="header-section-number">2.1</span> Technical Description</h2>
-<p>The dataset is collected from multiple sources, including U.S. Census Bureau, Federal Bureau of Investigation, Centers for Disease Control and Prevention, US Department of Commerce, and Mental Health America. In order answer the broad question of which is the best states within U.S to live in, we have chose and we will assess indicators of different aspects that can represent the living standards, including population demographics, health, Economic status, safety, education attainment and employment status in 50 states in the U.S. All the indicators are from year 2022, given that it is the most recent full-year record.</p>
-<p>Below are the description for each columns in the dataset including their original sources, grouped by indicators of each aspects:</p>
+<blockquote class="blockquote">
+<p>In order answer the broad question of which is the best states within U.S to live in, we will assess factors across different living aspects that can provide indication od desirability for different households, which include economics, education, health, and safety indicators. Thus we have collected the data from multiple sources(U.S.Census Bureau, Federal Bureau of Investigation, Centers for Disease Control and Prevention, US Department of Commerce, and Mental Health America) where each being the authority on the given asepct.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>The dataset has 50 rows and 13 columns, where each rows repersent each states in the United States, excluding minor island, and each column repersent each indictor of the living condition in each state(e.g population, crime rates, high school graudation rates.) All the data are collected from the year of 2022, given that this is the most recent full year.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>POPULATION, U18, OVER60, POVERTY, HSGRADUATE, EMPLOYMENT, and GINI columns are gathered from U.S. Census Bureau for 50 states across United States. All the columns here are presented in termns of number of population excpet for GINI, which is an index data that goes from 0 to 1 The data from U.S. Census Bureau are collected through the census survey each year, such that the result are updated every 12 months.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>OBESE and INFM columns are collected from cdc, the Centers for Disease Control and Prevention for 50 states across United States. These two columns are presented in terms of the percentage. Their data are collected from various health insititutions including hospitals and local doctor’s office. The data is nomrally updated yearly.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>The MENTAL column is collected from Mental Health America. This is a ranking goes from 1- 51. The ranking is Made up by 7 measures combined,including Adults with Any Mental Illness (AMI), Adults with Substance Use Disorder in the Past Year, Adults with Serious Thoughts of Suicide, Adults with AMI who Did Not Receive Treatment, Adults with AMI Reporting Unmet Need, Adults with AMI who are Uninsured, and Adults with Cognitive Disability Who Could Not See a Doctor Due to Costs. States that are ranked 1-10 have lower prevalence of mental illness and higher rates of access to care for adults. States that are ranked 39-51 indicate that adults have higher prevalence of mental illness and lower rates of access to care.All of the data presented in the MHA is collected through the MHA Online Screening Program.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>The INCOME column is collected from Bureau of Economic Analysis. It presents the per capita personal income in U.S dollars across 50 states. Most data from bea are sourced from surveies and sponsored by fedueral agencies.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>The CRIME column is collected from Federal Bureau of Investigation. Note that this column is not in percentage or in numbers while it present the number of reperted crime per 100,000 of the population. The data in FBI are collected from the monthly reports from their agencies.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>Below are the description for each columns including their original sources:</p>
+</blockquote>
+<blockquote class="blockquote">
 <p>STATES: Names of the 50 states in the U.S, excluding minor islands.</p>
-<p>Demography Indicators:</p>
-<p>POPULATION: Number of population in each state of United States as of 2022. Original source: U.S. Census Bureau. https://data.census.gov/table/ACSST1Y2022.S1701?q=poverty%20by%20state</p>
-<p>U18: Number of population who is under the age of 18 in each state of United States as of 2022. Original source: U.S. Census Bureau. https://data.census.gov/table/ACSST1Y2022.S1701?q=poverty%20by%20state</p>
-<p>OVER60:Number of population who is over the age of 60 in each state of United States as of 2022. Original source: U.S. Census Bureau. https://data.census.gov/table/ACSST1Y2022.S1701?q=poverty%20by%20state</p>
-<p>Health Indicators:</p>
-<p>OBESE:Percentage of adults with obesity in the United States as of 2022 by state. Original source: cdc.gov. https://www.statista.com/statistics/378988/us-obesity-rate-by-state/</p>
-<p>INFM: The infant mortality rates by states in 2022. Original source: cdc.gov. https://www.cdc.gov/nchs/data/vsrr/vsrr033.pdf</p>
-<p>MENTAL: The ranking for Adult mental health by states in 2022. Made up by 7 measures combined. States that are ranked 1-10 have lower prevalence of mental illness and higher rates of access to care for adults. States that are ranked 39-51 indicate that adults have higher prevalence of mental illness and lower rates of access to care. Original Source:Mental Health America https://mhanational.org/issues/2022/mental-health-america-adult-data</p>
-<p>Economics Indicators:</p>
-<p>INCOME: Personal income Per capita in the United States in 2022, by state (in U.S. dollars). Original source: bea.gov. https://www.statista.com/statistics/303555/us-per-capita-personal-income/</p>
-<p>POVERTY: percentage of people below poverty in the U.S by states in 2022. Original source: U.S. Census Bureau. https://data.census.gov/table/ACSST1Y2022.S1701?q=poverty%20by%20state</p>
-<p>GINI: Gini index of income inequality in the U.S by states in 2022. Gini index is a measure for income distribution, with 0 repersent the perfect equality and 1 repersent the perfect inequality. Original source: U.S. Census Bureau.: U.S. Census Bureau. https://data.census.gov/table?q=gini%20index&amp;g=010XX00US&amp;y=2021</p>
-<p>Safety Indicator:</p>
-<p>CRIME: Reported violent crime rate in the United States in 2022, by state (per 100,000 of the population). Original source: fbi.gov https://www.statista.com/statistics/200445/reported-violent-crime-rate-in-the-us-states/</p>
-<p>Education Indicator:</p>
-<p>HSGRADUATE:Number of population with high school diploma or equivalence in each state of United States as of 2022. Original source: U.S. Census Bureau. https://data.census.gov/table/ACSST1Y2022.S1701?q=poverty%20by%20state</p>
-<p>Employment Indicator:</p>
-<p>EMPLOYMENT: Number of employed population in each state of United States as of 2022. Original source: U.S. Census Bureau. https://data.census.gov/table/ACSST1Y2022.S1701?q=poverty%20by%20state</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>POPULATION: Number of population in each state of United States as of 2022.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>U18: Number of population who is under the age of 18 in each state of United States as of 2022.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>OVER60: Number of population who is over the age of 60 in each state of United States as of 2022.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>POVERTY: percentage of people below poverty in the U.S by states in 2022.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>HSGRADUATE:Number of population with high school diploma or equivalence in each state of United States as of 2022.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>EMPLOYMENT: Number of employed population in each state of United States as of 2022.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>Original source for all above:https://data.census.gov/table/ACSST1Y2022.S1701?q=poverty%20by%20state</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>OBESE: Percentage of adults with obesity in the United States as of 2022 by state.Original source: https://www.statista.com/statistics/378988/us-obesity-rate-by-state/</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>INFM: The infant mortality rates by states in 2022. Original source:https://www.cdc.gov/nchs/data/vsrr/vsrr033.pdf</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>MENTAL: The ranking for Adult mental health by states in 2022. Original Source: https://mhanational.org/issues/2022/mental-health-america-adult-data</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>INCOME: Personal income Per capita in the United States in 2022, by state (in U.S. dollars).Original source: https://www.statista.com/statistics/303555/us-per-capita-personal-income/</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>GINI: The Gini index of income inequality in the U.S by states in 2022. Original source: https://data.census.gov/table?q=gini%20index&amp;g=010XX00US&amp;y=2021</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>CRIME: Reported violent crime rate in the United States in 2022, by state (per 100,000 of the population). Original source: https://www.statista.com/statistics/200445/reported-violent-crime-rate-in-the-us-states/</p>
+</blockquote>
 </section>
 <section id="research-plan" class="level2" data-number="2.2">
 <h2 data-number="2.2" class="anchored" data-anchor-id="research-plan"><span class="header-section-number">2.2</span> Research Plan</h2>
@@ -203,6 +282,29 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="missing-value-analysis" class="level2" data-number="2.3">
 <h2 data-number="2.3" class="anchored" data-anchor-id="missing-value-analysis"><span class="header-section-number">2.3</span> Missing value analysis</h2>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(naniar)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'naniar' was built under R version 4.3.2</code></pre>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>states <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"States.csv"</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">vis_miss</span>(states) <span class="sc">+</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Percentage of Missing Values by Columns"</span>)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(p)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="data_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<blockquote class="blockquote">
+<p>As presented in the graph above, we can see that there is 0% of missing value for each columns and it means that this is a complete dataset. This result is expected due to two reasons: First, this is a rather small dataset with 50 rows and 13 columns so that the data is likely to be avaliable given the size. Second, considering the authority of the sources of data, including fbi, cdc, and U.S. Census Bureau, which gaurenteed the quality and credibility of the data.</p>
+</blockquote>
 
 
 </section>
