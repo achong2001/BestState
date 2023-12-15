@@ -65,7 +65,7 @@ states$U18 <- gsub(",", "", states$U18)
 states$U18 <- as.numeric(states$U18)
 
 states$OVER60 <- gsub(",", "", states$OVER60)
-States$OVER60 <- as.numeric(states$OVER60)
+states$OVER60 <- as.numeric(states$OVER60)
 
 states$REGION <- as.character(states$REGION)
 ```
@@ -85,6 +85,7 @@ ggplot(states, aes(x=reorder(STATES,desc(POPULATION/1000)),y=POPULATION/1000))+
 >States with fewer people living in them often depend more on farming or using things from nature, like minerals and forests, for their money. They usually don't have big cities, and some can be hard to get to because of where they are on the map, like Alaska and Wyoming. This can also suit to the preference of certain group of population when consider moving around the states. 
 
 >Graph2: Demographic Overview Across the States 
+
 
 ```{r}
 

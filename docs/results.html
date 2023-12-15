@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -160,6 +194,400 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(GGally)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stderr">
+<pre><code>Loading required package: ggplot2</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Registered S3 method overwritten by 'GGally':
+  method from   
+  +.gg   ggplot2</code></pre>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'dplyr'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:stats':
+
+    filter, lag</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:base':
+
+    intersect, setdiff, setequal, union</code></pre>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(vcd)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stderr">
+<pre><code>Loading required package: grid</code></pre>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggridges) </span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(redav)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>states <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"States.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a data frame with state and region columns</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>state_region_mapping <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">state =</span> <span class="fu">c</span>(<span class="st">"Connecticut"</span>, <span class="st">"Maine"</span>, <span class="st">"Massachusetts"</span>, <span class="st">"New Hampshire"</span>, <span class="st">"Rhode Island"</span>, <span class="st">"Vermont"</span>,</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>            <span class="st">"New Jersey"</span>, <span class="st">"New York"</span>, <span class="st">"Pennsylvania"</span>,</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>            <span class="st">"Illinois"</span>, <span class="st">"Indiana"</span>, <span class="st">"Michigan"</span>, <span class="st">"Ohio"</span>, <span class="st">"Wisconsin"</span>,</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>            <span class="st">"Iowa"</span>, <span class="st">"Kansas"</span>, <span class="st">"Minnesota"</span>, <span class="st">"Missouri"</span>, <span class="st">"Nebraska"</span>, <span class="st">"North Dakota"</span>, <span class="st">"South Dakota"</span>,</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>            <span class="st">"Delaware"</span>, <span class="st">"Florida"</span>, <span class="st">"Georgia"</span>, <span class="st">"Maryland"</span>, <span class="st">"North Carolina"</span>, <span class="st">"South Carolina"</span>, <span class="st">"Virginia"</span>,</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>            <span class="st">"District of Columbia"</span>, <span class="st">"West Virginia"</span>, <span class="st">"Alabama"</span>, <span class="st">"Kentucky"</span>, <span class="st">"Mississippi"</span>, <span class="st">"Tennessee"</span>,</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>            <span class="st">"Arkansas"</span>, <span class="st">"Louisiana"</span>, <span class="st">"Oklahoma"</span>, <span class="st">"Texas"</span>, <span class="st">"Arizona"</span>,</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>            <span class="st">"Colorado"</span>, <span class="st">"Idaho"</span>, <span class="st">"Montana"</span>, <span class="st">"Nevada"</span>,<span class="st">"New Mexico"</span>, </span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>            <span class="st">"Utah"</span>, <span class="st">"Wyoming"</span>, <span class="st">"Alaska"</span>, <span class="st">"California"</span>, <span class="st">"Hawaii"</span>, <span class="st">"Oregon"</span>, <span class="st">"Washington"</span>),</span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">region =</span> <span class="fu">c</span>(<span class="st">"Northeast"</span>, <span class="st">"Northeast"</span>, <span class="st">"Northeast"</span>, <span class="st">"Northeast"</span>, <span class="st">"Northeast"</span>, <span class="st">"Northeast"</span>,</span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>             <span class="st">"Northeast"</span>, <span class="st">"Northeast"</span>, <span class="st">"Northeast"</span>,</span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>             <span class="st">"Midwest"</span>, <span class="st">"Midwest"</span>, <span class="st">"Midwest"</span>, <span class="st">"Midwest"</span>, <span class="st">"Midwest"</span>,</span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>             <span class="st">"Midwest"</span>, <span class="st">"Midwest"</span>, <span class="st">"Midwest"</span>, <span class="st">"Midwest"</span>, <span class="st">"Midwest"</span>, <span class="st">"Midwest"</span>, <span class="st">"Midwest"</span>,</span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>             <span class="st">"South"</span>, <span class="st">"South"</span>, <span class="st">"South"</span>, <span class="st">"South"</span>, <span class="st">"South"</span>, <span class="st">"South"</span>, <span class="st">"South"</span>,</span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>             <span class="st">"South"</span>, <span class="st">"South"</span>, <span class="st">"South"</span>, <span class="st">"South"</span>, <span class="st">"South"</span>, <span class="st">"South"</span>, <span class="st">"South"</span>,</span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>             <span class="st">"South"</span>, <span class="st">"South"</span>, <span class="st">"South"</span>, <span class="st">"South"</span>,</span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>             <span class="st">"West"</span>, <span class="st">"West"</span>, <span class="st">"West"</span>, <span class="st">"West"</span>, <span class="st">"West"</span>,</span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a>             <span class="st">"West"</span>, <span class="st">"West"</span>, <span class="st">"West"</span>, <span class="st">"West"</span>, <span class="st">"West"</span>, <span class="st">"West"</span>,<span class="st">"West"</span>)</span>
+<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a>merged_data <span class="ot">&lt;-</span> <span class="fu">merge</span>(states, state_region_mapping, <span class="at">by.x =</span> <span class="st">"STATES"</span>, <span class="at">by.y =</span> <span class="st">"state"</span>)</span>
+<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a named vector for mapping</span></span>
+<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a>state_to_region <span class="ot">&lt;-</span> <span class="fu">setNames</span>(state_region_mapping<span class="sc">$</span>region, state_region_mapping<span class="sc">$</span>state)</span>
+<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-30"><a href="#cb12-30" aria-hidden="true" tabindex="-1"></a>states<span class="sc">$</span>REGION <span class="ot">&lt;-</span> state_to_region[states<span class="sc">$</span>STATES]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Reformatting the dataset </span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>states<span class="sc">$</span>INCOME <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">","</span>, <span class="st">""</span>, states<span class="sc">$</span>INCOME)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>states<span class="sc">$</span>INCOME <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(states<span class="sc">$</span>INCOME)</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>states<span class="sc">$</span>POPULATION <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">","</span>, <span class="st">""</span>, states<span class="sc">$</span>POPULATION)</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>states<span class="sc">$</span>POPULATION <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(states<span class="sc">$</span>POPULATION)</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>states<span class="sc">$</span>U18 <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">","</span>, <span class="st">""</span>, states<span class="sc">$</span>U18)</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>states<span class="sc">$</span>U18 <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(states<span class="sc">$</span>U18)</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>states<span class="sc">$</span>OVER60 <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">","</span>, <span class="st">""</span>, states<span class="sc">$</span>OVER60)</span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>states<span class="sc">$</span>OVER60 <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(states<span class="sc">$</span>OVER60)</span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>states<span class="sc">$</span>REGION <span class="ot">&lt;-</span> <span class="fu">as.character</span>(states<span class="sc">$</span>REGION)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<blockquote class="blockquote">
+<p>Graph1: Demographic Overview Across the States</p>
+</blockquote>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(states, <span class="fu">aes</span>(<span class="at">x=</span><span class="fu">reorder</span>(STATES,<span class="fu">desc</span>(POPULATION<span class="sc">/</span><span class="dv">1000</span>)),<span class="at">y=</span>POPULATION<span class="sc">/</span><span class="dv">1000</span>))<span class="sc">+</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">fill =</span> <span class="st">"lightblue"</span>)<span class="sc">+</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>REGION, <span class="at">scales =</span> <span class="st">"free"</span>)<span class="sc">+</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span><span class="st">"State"</span>, <span class="at">y=</span><span class="st">"Population"</span>,<span class="at">title =</span> <span class="st">"Distribution of Population across U.S by Region (Unit:1,000)"</span>)<span class="sc">+</span> </span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.y =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">6</span>))<span class="sc">+</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">6</span>, <span class="at">angle =</span> <span class="dv">30</span>, <span class="at">vjust =</span> <span class="fl">0.5</span>, <span class="at">hjust =</span> <span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="results_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<blockquote class="blockquote">
+<p>This is an overview of population distribution across different regions of the United States, with each subgraph representing one of the four major regions: Midwest, Northeast, South, and West. The y-axis of each graph shows the population in thousands. We can see that the South and West regions show states with very high populations, suggesting these regions have certain attractions, possibly including warmer climates, growing economies, or industry presence such technology.There are also some states have significantly higher populations than others within the same region, which can be considered as an indication for of active economic environment or desirable living conditions. For example, California in the West and Texas and Florida in the South ranking the first within their regions, with the population of close to 40,000 thousands and over 20,000 thousands. States with fewer people living in them often depend more on farming or using things from nature, like minerals and forests, for their money. They usually don’t have big cities, and some can be hard to get to because of where they are on the map, like Alaska and Wyoming. This can also suit to the preference of certain group of population when consider moving around the states.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>Graph2: Demographic Overview Across the States</p>
+</blockquote>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Reshape the data from wide to long</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>states_long <span class="ot">&lt;-</span> states <span class="sc">%&gt;%</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">c</span>(U18, OVER60), <span class="at">names_to =</span> <span class="st">"Age_Group"</span>, <span class="at">values_to =</span> <span class="st">"Population"</span>)</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the data</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(states_long, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(STATES,Population), <span class="at">y =</span> Population<span class="sc">/</span><span class="dv">1000</span>, <span class="at">fill =</span> Age_Group)) <span class="sc">+</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">position =</span> <span class="st">"dodge"</span>, <span class="at">width =</span> <span class="fl">0.8</span>) <span class="sc">+</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Teenage and Senior Distribution across U.S By Region (Unit:1,000)"</span>,</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Population"</span>,</span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"States"</span>,</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">fill =</span> <span class="st">"Age_Group"</span>) <span class="sc">+</span></span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.y =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">6</span>)) <span class="sc">+</span></span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>()<span class="sc">+</span></span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> REGION, <span class="at">scales =</span> <span class="st">"free_y"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="results_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<blockquote class="blockquote">
+<p>The above set of bar graphs represent the distribution of two age groups, teenagers (people with age under 18, shown in blue) and seniors (people with age over 60, shown in red), across U.S. states within four regions, in the unit of thousands. In general, a larger proportion of teenagers suggests a large potential in robust population growth, the work force growth, abundant educational and job opporunities. Whereas a larger proportion of seniors suggest that these places might be popular for retirement, and they may have a bigger need for healthcare services and retirement homes. The balance between two groups is also very important, in terms of whether the population pyramid is stable so that the challenges of supporting the seniors wound’t arise. From the graph, we can identify a genereal trend of relative prominance in the senior population,for which is more notable in the northeast region, indicating a preferable environment for elders and for possible historical reasons. The states with most substaintial teenage population is texas, and states with the most substaintial senior population is florida. The high in teenage population might be due to higher birth rates, migration of younger families, or both. The significant number of seniors in Florida is consistent with its reputation as a retirement destination due to its warm climate and tax-friendly policies for retirees. In the Midwest region, the states has a relatively balanced the populations of teenagers and seniors, suggesting a stable demographic.This can be a result from lacking of both incoming and outgoing population due to family-oriented cultrual tradition in Midwest.This can be considered somewhat less prefereable enviornment for movers in terms of lack of fluidty and diversity in population and hence social classes, but the stability can be good for those who wants to settle down in a place for long term.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>Graph3: Income Distribution By Region</p>
+</blockquote>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(states, <span class="fu">aes</span>(<span class="at">x =</span> INCOME, <span class="at">y =</span> REGION)) <span class="sc">+</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">varwidth =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density_ridges</span>(<span class="fu">aes</span>(<span class="at">fill =</span> REGION), <span class="at">scale =</span> <span class="fl">0.9</span>, <span class="at">alpha =</span> <span class="fl">0.6</span>) <span class="sc">+</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Distribution of Annual Personal Income by Region(USD)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stderr">
+<pre><code>Picking joint bandwidth of 4090</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="results_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<blockquote class="blockquote">
+<p>Graph4: Income Distribution By Region</p>
+</blockquote>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(states, <span class="fu">aes</span>(<span class="at">x=</span><span class="fu">reorder</span>(STATES,<span class="fu">desc</span>(INCOME)),<span class="at">y=</span>INCOME))<span class="sc">+</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">fill =</span> <span class="st">"lightblue"</span>)<span class="sc">+</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>REGION, <span class="at">scales =</span> <span class="st">"free"</span>)<span class="sc">+</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span><span class="st">"State"</span>, <span class="at">y=</span><span class="st">"Income(USD)"</span>,<span class="at">title =</span> <span class="st">"Distribution of Annual Personal Income Per Capita across U.S by Region"</span>)<span class="sc">+</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.y =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">6</span>))<span class="sc">+</span></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">6</span>, <span class="at">angle =</span> <span class="dv">30</span>, <span class="at">vjust =</span> <span class="fl">0.5</span>, <span class="at">hjust =</span> <span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="results_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<blockquote class="blockquote">
+<p>Graph 3 and 4 combined to be the overview of Annual personal income distribution by region. The personal income is considered as a straight forward indication for the economic well-being and financial prosperity of the local communities. From the boxplot, we can see that the northeast region has the highest 75% percentile, median, and 25% percential among all the regions, where the south region has the lowest for all. By the graph we can see that Illinois, Connecticut, D.C and California are the top states with highest perosnal income in four regions. This supports their popularity and attratciveness in our common knowledge. Higher personal income means better career opportunites, safety level, and normally better public facilities, which make them attrative for the potential movers. The West and Norteast region tends to have larger spread than the South and Midwest Region, this can be consider as a higher divide in income inequality,and the bimodal pattern in the distribution also indicate this point, where there is a large group with the lower than the median income and a large group of people with higher than median income. THis, however, can also be an indication for the dynamic in different opporunties. This is consistent with our common knwoledge, where the west is considered to be a tech hub and the northeast is considered to be the financial hub. These are the two highest paying industry in the U.S and such that result in a higher annual personal income in these region, which means more job opportuinies and a better career development path. The smallest variability of income in the Midwest region correspond to the high stability in the population structure as suggested in the graph 2, suggesting a lack of fluid in population and derrivatively the social class structures. However, it is also a good sign for lower income ineuqality, makes it advantagous for those who yearn stability and less motivated to take upon challenges. The outlier in the South is the District of Columbia, it has a over 95,000 USD annual personal income per capita that is way exceed the median in the south that is around 58,000 USD.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>Graph5: GINI Index across states</p>
+</blockquote>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(states, <span class="fu">aes</span>(<span class="at">x =</span> GINI, <span class="at">y =</span> <span class="fu">reorder</span>(STATES, GINI))) <span class="sc">+</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_dotplot</span>(<span class="at">binaxis =</span> <span class="st">"y"</span>, <span class="at">stackdir =</span> <span class="st">"center"</span>, <span class="at">dotsize =</span> <span class="fl">0.5</span>, <span class="at">binwidth =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>REGION, <span class="at">scales =</span> <span class="st">"free_y"</span>, <span class="at">ncol =</span> <span class="dv">1</span>, <span class="at">labeller =</span> <span class="fu">labeller</span>(<span class="at">REGION =</span> <span class="fu">label_wrap_gen</span>(<span class="dv">15</span>)), <span class="at">strip.position =</span> <span class="st">"right"</span>) <span class="sc">+</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">"blue"</span>)<span class="sc">+</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"GINI Index Across States by Region"</span>) <span class="sc">+</span></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.y =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">5</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="results_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<blockquote class="blockquote">
+<p>This graph depicts the Gini index scores across the United States. The Gini index is a statistical measure used to quantify income inequality within a population. It ranges from 0 to 1, where 0 represents perfect income equality (everyone has the same income) and 1 represents perfect income inequality (one person has all the income). This graph reveals several notable patterns and insights. Firstly, there is a noticeable regional pattern, with states in the Midwest consistently exhibiting lower Gini index scores that clusterd around the range 0.45 to 0.475, indicative of less income inequality, compared to states in the South that clustered around 0.475 to 0.485, which tend to have higher scores, signifying greater income inequality. The Northeast and West regions have a wider spread, indicating the disparaties between the states winthin region. Illinios, New York, DC, and California are the states with highest GINI index across four regions, whereas Wisconsin, New Hampshire, Delaware and Alaska has the lowest. Combining with the information we got from graph 3 and 4, it can shown a trade-off between higher income and GINI Index.<br>
+Two notable outliers in the data include D.C and New Hampshire, repectively with the highest GINI Index above 0.525 and the lowest Gini index scorebelow 0.425. The pronounced income disparity in D.C is consistent with the expected trade off between euality and high-paying, however the euitable economic situation in New Hampshire doesn’t come with the lowest income. This makes it very ideal for those who wants both equality and dynamic career opportunites.</p>
+</blockquote>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Reformat the columns</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>states<span class="sc">$</span>HSGRADUATE <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">","</span>, <span class="st">""</span>, states<span class="sc">$</span>HSGRADUATE)</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>states<span class="sc">$</span>HSGRADUATE <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(states<span class="sc">$</span>HSGRADUATE)</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>states<span class="sc">$</span>EMPLOYMENT <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">","</span>, <span class="st">""</span>, states<span class="sc">$</span>EMPLOYMENT)</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>states<span class="sc">$</span>EMPLOYMENT <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(states<span class="sc">$</span>EMPLOYMENT)</span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>states<span class="sc">$</span>POVERTY <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">"%"</span>, <span class="st">""</span>, states<span class="sc">$</span>POVERTY)</span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>states<span class="sc">$</span>POVERTY <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(states<span class="sc">$</span>POVERTY)</span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a><span class="co">#Convert to percentage</span></span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a>states<span class="sc">$</span>U18_rate <span class="ot">&lt;-</span> (states<span class="sc">$</span>U18) <span class="sc">/</span> (states<span class="sc">$</span>POPULATION)</span>
+<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a>states<span class="sc">$</span>OVER60_rate <span class="ot">&lt;-</span> (states<span class="sc">$</span>OVER60) <span class="sc">/</span> (states<span class="sc">$</span>POPULATION)</span>
+<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a>states<span class="sc">$</span>HSGRADUATE_rate <span class="ot">&lt;-</span> (states<span class="sc">$</span>HSGRADUATE) <span class="sc">/</span> (states<span class="sc">$</span>POPULATION)</span>
+<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a>states<span class="sc">$</span>EMPLOYMENT_rate <span class="ot">&lt;-</span> (states<span class="sc">$</span>EMPLOYMENT) <span class="sc">/</span> (states<span class="sc">$</span>POPULATION)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co">#New Data Frame</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>states_new <span class="ot">&lt;-</span>states[, <span class="fu">c</span>(<span class="st">"STATES"</span>, <span class="st">"GINI"</span>, <span class="st">"OBESE"</span>,<span class="st">"POVERTY"</span>,<span class="st">"CRIME"</span>,<span class="st">"INCOME"</span>,<span class="st">"MENTAL"</span>,<span class="st">"INFM"</span>,<span class="st">"U18_rate"</span>,<span class="st">"OVER60_rate"</span>,<span class="st">"HSGRADUATE_rate"</span>,<span class="st">"EMPLOYMENT_rate"</span>,<span class="st">"REGION"</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Convert to Percentage</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>states_new<span class="sc">$</span>OBESE <span class="ot">&lt;-</span> (states_new<span class="sc">$</span>OBESE) <span class="sc">/</span> <span class="dv">100</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>states_new<span class="sc">$</span>POVERTY <span class="ot">&lt;-</span> states_new<span class="sc">$</span>POVERTY<span class="sc">/</span> <span class="dv">100</span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>states_new<span class="sc">$</span>INFM <span class="ot">&lt;-</span> states_new<span class="sc">$</span>INFM<span class="sc">/</span> <span class="dv">100</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Rescale Crime and Mental from 0 to 1 by min-max scaling </span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>min_value <span class="ot">&lt;-</span> <span class="fu">min</span>(states_new<span class="sc">$</span>CRIME)</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>max_value <span class="ot">&lt;-</span> <span class="fu">max</span>(states_new<span class="sc">$</span>CRIME)</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>states_new<span class="sc">$</span>CRIME<span class="ot">&lt;-</span> (states_new<span class="sc">$</span>CRIME <span class="sc">-</span> min_value) <span class="sc">/</span> (max_value <span class="sc">-</span> min_value)</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>min_value <span class="ot">&lt;-</span> <span class="fu">min</span>(states_new<span class="sc">$</span>MENTAL)</span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>max_value <span class="ot">&lt;-</span> <span class="fu">max</span>(states_new<span class="sc">$</span>MENTAL)</span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>states_new<span class="sc">$</span>MENTAL <span class="ot">&lt;-</span> (states_new<span class="sc">$</span>MENTAL <span class="sc">-</span> min_value) <span class="sc">/</span> (max_value <span class="sc">-</span> min_value)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Create Levels for Obese, Crime, Poverty, mental based on their quantiles </span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="co">#VLOW: below min; LOW: Q1-Median, MOD:Median - Q3, HIGH: Q3 and above</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>states_new<span class="sc">$</span>OBESE_levels <span class="ot">&lt;-</span> <span class="fu">cut</span>(states_new<span class="sc">$</span>OBESE,</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>                   <span class="at">breaks=</span><span class="fu">c</span>(<span class="sc">-</span><span class="cn">Inf</span>, <span class="fu">quantile</span>(states_new<span class="sc">$</span>OBESE, <span class="fl">0.25</span>), <span class="fu">median</span>(states_new<span class="sc">$</span>OBESE), <span class="fu">quantile</span>(states_new<span class="sc">$</span>OBESE, <span class="fl">0.75</span>), <span class="cn">Inf</span>),</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>                   <span class="at">labels=</span><span class="fu">c</span>(<span class="st">'VLOW'</span>, <span class="st">'LOW'</span>, <span class="st">'MOD'</span>, <span class="st">'HIGH'</span>))</span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>states_new<span class="sc">$</span>CRIME_levels <span class="ot">&lt;-</span> <span class="fu">cut</span>(states_new<span class="sc">$</span>CRIME,</span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>                   <span class="at">breaks=</span><span class="fu">c</span>(<span class="sc">-</span><span class="cn">Inf</span>, <span class="fu">quantile</span>(states_new<span class="sc">$</span>CRIME, <span class="fl">0.25</span>), <span class="fu">median</span>(states_new<span class="sc">$</span>CRIME), <span class="fu">quantile</span>(states_new<span class="sc">$</span>CRIME, <span class="fl">0.75</span>), <span class="cn">Inf</span>),</span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a>                   <span class="at">labels=</span><span class="fu">c</span>(<span class="st">'VLOW'</span>, <span class="st">'LOW'</span>, <span class="st">'MOD'</span>, <span class="st">'HIGH'</span>))</span>
+<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a>states_new<span class="sc">$</span>POVERTY_levels <span class="ot">&lt;-</span> <span class="fu">cut</span>(states_new<span class="sc">$</span>POVERTY,</span>
+<span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a>                   <span class="at">breaks=</span><span class="fu">c</span>(<span class="sc">-</span><span class="cn">Inf</span>, <span class="fu">quantile</span>(states_new<span class="sc">$</span>POVERTY, <span class="fl">0.25</span>), <span class="fu">median</span>(states_new<span class="sc">$</span>POVERTY), <span class="fu">quantile</span>(states_new<span class="sc">$</span>POVERTY, <span class="fl">0.75</span>), <span class="cn">Inf</span>),</span>
+<span id="cb24-14"><a href="#cb24-14" aria-hidden="true" tabindex="-1"></a>                   <span class="at">labels=</span><span class="fu">c</span>(<span class="st">'VLOW'</span>, <span class="st">'LOW'</span>, <span class="st">'MOD'</span>, <span class="st">'HIGH'</span>))</span>
+<span id="cb24-15"><a href="#cb24-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-16"><a href="#cb24-16" aria-hidden="true" tabindex="-1"></a>states_new<span class="sc">$</span>MENTAL_levels <span class="ot">&lt;-</span> <span class="fu">cut</span>(states_new<span class="sc">$</span>MENTAL,</span>
+<span id="cb24-17"><a href="#cb24-17" aria-hidden="true" tabindex="-1"></a>                   <span class="at">breaks=</span><span class="fu">c</span>(<span class="sc">-</span><span class="cn">Inf</span>, <span class="fu">quantile</span>(states_new<span class="sc">$</span>MENTAL, <span class="fl">0.25</span>), <span class="fu">median</span>(states_new<span class="sc">$</span>MENTAL), <span class="fu">quantile</span>(states_new<span class="sc">$</span>MENTAL, <span class="fl">0.75</span>), <span class="cn">Inf</span>),</span>
+<span id="cb24-18"><a href="#cb24-18" aria-hidden="true" tabindex="-1"></a>                   <span class="at">labels=</span><span class="fu">c</span>(<span class="st">'VLOW'</span>, <span class="st">'LOW'</span>, <span class="st">'MOD'</span>, <span class="st">'HIGH'</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<blockquote class="blockquote">
+<p>For the two mosaic plots below, we converted the poverty, obese, mental, and crime columns into columns with four categorical levels: VLOW, LOW, MOD, and HIGH. Where VLOW correspond to the data that are lower than the Minimum, LOW correspond to the data points that are between Minimum and the 25% percentile, MOD correspond to the data points that are between 25% percentile and median, HIGH correspond to the data points that are above 75% percentile.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>Graph6: Obese v.s Poverty rate by region</p>
+</blockquote>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mosaic</span>(POVERTY_levels<span class="sc">~</span>REGION<span class="sc">+</span>OBESE_levels, <span class="at">data =</span> states_new,</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="at">direction =</span> <span class="fu">c</span>(<span class="st">"h"</span>, <span class="st">"v"</span>,<span class="st">"h"</span>),</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="at">rot_labels =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>),</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="at">highlighting_fill=</span><span class="fu">c</span>(<span class="st">'#87CEEB'</span>, <span class="st">'#C85A89'</span>, <span class="st">'#D2691E'</span>, <span class="st">"#FFD700"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="results_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<blockquote class="blockquote">
+<p>The graph compares regions on the basis of obesity levels and poverty levels. The obesity and poverty levels are categorized as VLOW (Very Low), LOW, MOD (Moderate), and HIGH. Each region has a separate bar, with different colors representing the proportion of each obesity or poverty level within that region. Here are some notable pattern form the graph: First, the South region has the highest proportion of HIGH obesity levels compared to other regions, and the proportion of the HIGH poverty rate level is high within the this obesity level. This is definetly a negative sign for the living condition in the south, which showcase the association it has with unhealthy dieting behavior and the association with the povery rate. The association between the povery and obesity can be explained by nutrient and awareness aspect. Second,Northeast and West has a decreasing proportion of obesity level going from VLOW to HIGH, which is an indication for good health condition of people in these two regions. the high povety level didn’t occur in northeast region for the VLOW and LOW obesity levels, whereas it only occured in VLOW and MOD for the west, showing a relatively different association.<br>
+Third, the Midwest Has a rather balanced distribution of four types of obesity level, and relatively balanced distribution of poverty level within the types of obesity level, showing a stability in the overall structure.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>Graph7: Mental v.s Crime by region</p>
+</blockquote>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mosaic</span>(CRIME_levels<span class="sc">~</span>REGION<span class="sc">+</span>MENTAL_levels, <span class="at">data =</span> states_new,</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="at">direction =</span> <span class="fu">c</span>(<span class="st">"h"</span>, <span class="st">"v"</span>,<span class="st">"h"</span>),</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="at">rot_labels =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>),</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="at">highlighting_fill=</span><span class="fu">c</span>(<span class="st">'#87CEEB'</span>, <span class="st">'#C85A89'</span>, <span class="st">'#D2691E'</span>, <span class="st">"#FFD700"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="results_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<blockquote class="blockquote">
+<p>This mosaic plot allows us to see how CRIME levels are distributed across different regions and how MENTAL levels vary within each CRIME level.Note that the HIGH level for mental health means being ranked high on the meantl illness index, and high crime level means high number of crime rate. By examining the width of segments within each CRIME level, we can understand how MENTAL levels are associated with different levels of crime in each region. Two most notable pattern shown in the graph is the high proportion of HIGH mental health issues in Midwest and VLOW mental health issues in Northeast compare to other regions. Within these two categories, we can also see the it is in association with high crime rate for high mental health issue and low crime rate for low mental health issue. This gives us information on the desirability of living condition for these two regions on the health and safety level, where Midwets can be more dangerous and less mentally helathy condusive to live in. South Region has a relatively balanced distribution across the mental health levels, with no single category overwhelmingly dominant, and it is a good sign that the high mental helth is not in strong association with high crime rate, which can imply that certian safety or support measure is in place. The West Region has higher proportion on the MOD and HIGH mental health level, showcasing the disadvantages for those who need care in mental health. The MOD and HIGH crime level is also growing with the increase in the mental health level, which follows the expected association.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>Graph8: Scatterplot Matrix between the important features</p>
+</blockquote>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggpairs</span>(states_new[,<span class="fu">c</span>(<span class="st">"GINI"</span>, <span class="st">"OBESE"</span>,<span class="st">"POVERTY"</span>,<span class="st">"CRIME"</span>,<span class="st">"INCOME"</span>,<span class="st">"MENTAL"</span>,<span class="st">"INFM"</span>,<span class="st">"HSGRADUATE_rate"</span>,<span class="st">"EMPLOYMENT_rate"</span>)])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="results_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<blockquote class="blockquote">
+<p>This is a scatterplot matrix that shows correlation between GINI index, Obesity, Poverty rate, Crime rate, Income, mental health level, Infant Mortality Rate, High School graduation rate, and employmen rate with the given data. By the data, we can identity that there are relatively strong correlation between these two pairs of factors: Infant Mortality rate and Poverty(0.601), and Empolyment and Income(0.727). This indicates states with higher poverty rates tend to have higher infant mortality rates, states with higher employment rates tend to have higher income levels, and vice versa. This correlation makes sensebecause economic factors, such as employment rates and income levels, have a significant impact on the overall well-being of individuals and families. States with higher poverty rates often struggle to provide adequate healthcare, nutrition, and living conditions, which can result in higher infant mortality rates. Conversely, states with higher employment rates tend to have a more stable economic environment, which can lead to higher income levels and better access to healthcare, ultimately contributing to lower infant mortality rates.<br>
+Note that correlation doesn’t mean causation, but this graph can provide movers with information on what to watch out when picking states to move to, for example a location with low income can come with high infant mortality, so generally the states with higher personal income can be more prederrable for all.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>Graph9: Biplot for all features</p>
+</blockquote>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">draw_biplot</span>(states_new)<span class="sc">+</span> </span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">ggtitle</span>(<span class="st">"Biplot of states on different features"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="results_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<blockquote class="blockquote">
+<p>In the biplot, we see a couple of outliers that lie outside of the middle cluster of states. We notice that D.C is the farthest data point out in the direction of the Income, Employment, Crime, U18, and Mental vectors. This tells us that D.C provides the most income and job security out of all other states, but it is also the most dangerous state to reside in. D.C puts forth itself as a high risk, high reward state in terms of safety and financial stability, respectively. This observation also shows that younger children are more susceptible to criminal activity in two key ways. For one, children may present as an easy target for criminals to cause harm to, which will make it more likely for criminals to take advantage of their environment. Two, children can also be heavily influence by their enviornment, thus being involved in the doing of criminal activity. Regardless of which narrative is more prevalent, more protection and influence need to be instill for the youth in D.C on how to avoid crime. These states also have the capability of providing these safety programs because of the high average income per resident, in which slightly higher taxes can be enforced to budget these programs. The same should be done for states like Utah, California, Colorado, etc, where these states lie in the same direction of these vectors. This graph also showcases several underperforming states, specifically ones that reside in the South, such as Mississippi, Louisiana, and Arkansas. These states are located in the bottom left of the biplot, where vectors like Poverty, Obesity, Crime, and other unhealthy features point towards. The overall environmment of these states presents unhealthy living habits in all aspects of living (financial stability, safety, and health). Finally, we must mention the best performing states in the graph, which include the states that are in the top right of the graph. These states are farthest from the unhealthy and unsafe features while also being the highest in financial stability. New Hampshire and Vermont seem to offer the best balance and overall wellbeing of its residents in these aspects.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>Graph10: Biplot for young couples</p>
+</blockquote>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>states_1 <span class="ot">&lt;-</span> states_new[,<span class="fu">c</span>(<span class="st">"STATES"</span>,<span class="st">"MENTAL"</span>,<span class="st">"GINI"</span>,<span class="st">"INCOME"</span>,<span class="st">"EMPLOYMENT_rate"</span>)]</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="fu">draw_biplot</span>(states_1)<span class="sc">+</span> </span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">ggtitle</span>(<span class="st">"Biplot for young couples"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="results_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<blockquote class="blockquote">
+<p>When prioritizing the needs of young couples looking to move to a new state, we use this biplot to see how their necessary features correlate. Our first observation is that employment rate and mental health seem to be uncorrelated, where there vectors are nearly perpendicular to one another. This somewhat reflects the correlation value seen in our scatterplot matrix, where they have a correlation of -.109. We were surprised by their uncorrelated relationship because we expect their vectors to be nearly opposite, such that less employment means more mental illnesses, and vice versa. This negative relationship is more pronounced between income and mental health, so residents may not necessarily be depressed about not having a job but rather not having enough income. Of course, there are other serious mental illnesses besides just depression and anxiety that are factored, so a young couple should not have to worry about a state with low average income giving them increased likelihood of mental health. Another observation with these correlated vectors is that Gini and Mental have a nearly negative relationship; however, the scatterplot matrix tells us that they have low correlation. We believe that Gini and Mental is more likely to be negatively correlated because an uneven distribution of wealth may cause more mental illnesses, where a certain group of people have an unfair disadvantage to scale their income. New Hampshire seems to provide the most opportunity for young couples by providing high financial stability while also having an even income distribution with a low gini. This means that young couples are more likely to scale higher in the socioeconomic rankings in New Hampshire. New York has the most inequality of income while also having the higher average income with low employment, which makes it more less worthwhile for young couples to move to when compared to New Hampshire. Thus, the big city life would provide more risk for young couples than a quiet, calm suburban life.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>Graph11: Biplot for families</p>
+</blockquote>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>states_2 <span class="ot">&lt;-</span> states_new[,<span class="fu">c</span>(<span class="st">"STATES"</span>,<span class="st">"INFM"</span>,<span class="st">"U18_rate"</span>,<span class="st">"HSGRADUATE_rate"</span>)]</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="fu">draw_biplot</span>(states_2)<span class="sc">+</span> </span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">ggtitle</span>(<span class="st">"Biplot for families "</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="results_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<blockquote class="blockquote">
+<p>In this biplot for new families with children, our first observation was that the percentage of minors and rate of high school graduates are nearly uncorrelated. This tells us that the number of youth in a population does not affect the rate of graduates in the state, thus most states must be providing enough schooling for all of their young students such that competition between students is not at a risky level. We believe that if American students were competitive with one another that these vectors would point in opposite directions. From this graph, we once again see that southern states provide more health risks with relatively high number of infant mortality rates. New Hampshire is a great performing state in this graph because of its low INFM and high high school graduates rate, in which they once again present themselves as a great candidate for new, young families to move to.</p>
+</blockquote>
 
 
 
