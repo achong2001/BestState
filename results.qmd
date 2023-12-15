@@ -16,7 +16,7 @@ library(redav)
 
 
 ```{r}
-#states <- read.csv("States.csv")
+states <- read.csv("States.csv")
 ```
 
 ```{r}
@@ -65,7 +65,7 @@ states$U18 <- gsub(",", "", states$U18)
 states$U18 <- as.numeric(states$U18)
 
 states$OVER60 <- gsub(",", "", states$OVER60)
-states$OVER60 <- as.numeric(states$OVER60)
+States$OVER60 <- as.numeric(states$OVER60)
 
 states$REGION <- as.character(states$REGION)
 ```
