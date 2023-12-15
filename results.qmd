@@ -1,1 +1,241 @@
 # Results
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(tidyr)
+library(GGally)
+library(dplyr)
+library(ggplot2)
+library(vcd)
+library(ggridges) 
+library(redav)
+```
+
+
+```{r}
+states <- read.csv("States.csv")
+```
+
+```{r}
+# Create a data frame with state and region columns
+
+state_region_mapping <- data.frame(
+  state = c("Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado", "Connecticut", "Delaware", "Florida", "Georgia",
+            "Hawaii", "Idaho", "Illinois", "Indiana", "Iowa", "Kansas", "Kentucky", "Louisiana", "Maine", "Maryland",
+            "Massachusetts", "Michigan", "Minnesota", "Mississippi", "Missouri", "Montana", "Nebraska", "Nevada", "New Hampshire", "New Jersey",
+            "New Mexico", "New York", "North Carolina", "North Dakota", "Ohio", "Oklahoma", "Oregon", "Pennsylvania", "Rhode Island", "South Carolina",
+            "South Dakota", "Tennessee", "Texas", "Utah", "Vermont", "Virginia", "Washington", "West Virginia", "Wisconsin", "Wyoming", "District of Columbia"),
+  region = c("South", "West", "West", "South", "West", "West", "Northeast", "Northeast", "South", "South",
+             "West", "West", "Midwest", "Midwest", "Midwest", "Midwest", "South", "South", "Northeast", "South",
+             "Northeast", "Midwest", "Midwest", "South", "Midwest", "Midwest", "West", "Midwest", "West", "Northeast",
+             "Northeast", "West", "Northeast", "South", "Midwest", "South", "West", "Northeast", "Northeast", "South",
+             "Midwest", "South", "West", "West", "Northeast", "South", "West", "South", "West", "South", "Midwest")
+)
+merged_data <- merge(states, state_region_mapping, by.x = "STATES", by.y = "state")
+
+# Create a named vector for mapping
+state_to_region <- setNames(state_region_mapping$region, state_region_mapping$state)
+
+states$REGION <- state_to_region[states$STATES]
+```
+
+
+```{r}
+#Reformatting the dataset 
+states$INCOME <- gsub(",", "", states$INCOME)
+states$INCOME <- as.numeric(states$INCOME)
+
+states$REGION <- as.character(states$REGION)
+```
+
+
+```{r}
+#Graph1: Demographic Overview Across the States
+ggplot(states, aes(x=reorder(STATES,desc(POPULATION/1000)),y=POPULATION/1000))+
+  geom_col(fill = "lightblue")+
+  facet_wrap(~REGION, scales = "free")+
+  labs(x ="State", y="Population",title = "Distribution of Population across U.S by Region (Unit:1,000)")+ 
+  theme(axis.text.y = element_text(size = 6))+
+  theme(axis.text.x = element_text(size = 6, angle = 30, vjust = 0.5, hjust = 1))
+```
+>COMMENTARY1
+
+```{r}
+#Graph2: Demographic Overview Across the States2
+
+# Reshape the data from wide to long
+states_long <- states %>%
+  pivot_longer(cols = c(U18, OVER60), names_to = "Age_Group", values_to = "Population")
+
+# Plot the data
+ggplot(states_long, aes(x = reorder(STATES,Population), y = Population/1000, fill = Age_Group)) +
+  geom_col(position = "dodge", width = 0.8) +
+  labs(title = "Teenage and Senior Distribution across U.S By Region (Unit:1,000)",
+       y = "Population",
+       x = "States",
+       fill = "Age_Group") +
+  theme_minimal() +
+  theme(axis.text.y = element_text(size = 6)) +
+  coord_flip()+
+  facet_wrap(~ REGION, scales = "free_y")
+```
+>COMMENTARY2
+
+```{r}
+#Graph3: Income Distribution By Region
+
+ggplot(states, aes(x = INCOME, y = REGION)) +
+  geom_boxplot(varwidth = TRUE) +
+  geom_density_ridges(aes(fill = REGION), scale = 0.9, alpha = 0.6) +
+  labs(title = "Distribution of Personal Income Per Capita by Region(USD)")
+```
+
+>COMMENTARY3
+
+```{r}
+#Graph4: GINI Index across states
+
+ggplot(states, aes(x = GINI, y = reorder(STATES, GINI))) +
+  geom_dotplot(binaxis = "y", stackdir = "center", dotsize = 0.5, binwidth = 0.2) +
+  facet_wrap(~REGION, scales = "free_y", ncol = 1, labeller = labeller(REGION = label_wrap_gen(15)), strip.position = "right") +
+  geom_point(color = "blue")+
+  ggtitle("GINI Index Across States by Region") +
+  theme_minimal() +
+  theme(axis.text.y = element_text(size = 5))
+```
+
+>COMMENTARY4
+
+```{r}
+
+#Rescale Crime and Mental from 0 to 1 by min-max scaling 
+min_value <- min(states_new$CRIME)
+max_value <- max(states_new$CRIME)
+states_new$CRIME<- (states_new$CRIME - min_value) / (max_value - min_value)
+
+min_value <- min(states$MENTAL)
+max_value <- max(states$MENTAL)
+states$MENTAL <- (states$MENTAL - min_value) / (max_value - min_value)
+
+```
+
+```{r}
+
+#Reformat the columns
+states$POPULATION <- gsub(",", "", states$POPULATION)
+states$POPULATION <- as.numeric(states$POPULATION)
+
+states$U18 <- gsub(",", "", states$U18)
+states$U18 <- as.numeric(states$U18)
+
+states$OVER60 <- gsub(",", "", states$OVER60)
+states$OVER60 <- as.numeric(states$OVER60)
+
+states$HSGRADUATE <- gsub(",", "", states$HSGRADUATE)
+states$HSGRADUATE <- as.numeric(states$HSGRADUATE)
+
+states$EMPLOYMENT <- gsub(",", "", states$EMPLOYMENT)
+states$EMPLOYMENT <- as.numeric(states$EMPLOYMENT)
+
+states$POVERTY <- gsub("%", "", states$POVERTY)
+states$POVERTY <- as.numeric(states$POVERTY)
+
+#Convert to percentage
+states$U18_rate <- (states$U18) / (states$POPULATION)
+states$OVER60_rate <- (states$OVER60) / (states$POPULATION)
+states$HSGRADUATE_rate <- (states$HSGRADUATE) / (states$POPULATION)
+states$EMPLOYMENT_rate <- (states$EMPLOYMENT) / (states$POPULATION)
+states$OBESE <- (states$OBESE) / 100
+states$POVERTY <- states$POVERTY/ 100
+
+states$INFM <- states$INFM/ 100
+```
+
+
+```{r}
+#New Data Frame
+
+states_new <-states[, c("STATES", "GINI", "OBESE","POVERTY","CRIME","INCOME","MENTAL","INFM","U18_rate","OVER60_rate","HSGRADUATE_rate","EMPLOYMENT_rate","REGION")]
+```
+
+
+```{r}
+#Create Levels for Obese, Crime, Poverty, mental based on their quantiles 
+#VLOW: below min; LOW: Q1-Median, MOD:Median - Q3, HIGH: Q3-MAX
+
+states_new$OBESE_levels <- cut(states_new$OBESE,
+                   breaks=c(-Inf, quantile(states_new$OBESE, 0.25), median(states_new$OBESE), quantile(states_new$OBESE, 0.75), Inf),
+                   labels=c('VLOW', 'LOW', 'MOD', 'HIGH'))
+
+states_new$CRIME_levels <- cut(states_new$CRIME,
+                   breaks=c(-Inf, quantile(states_new$CRIME, 0.25), median(states_new$CRIME), quantile(states_new$CRIME, 0.75), Inf),
+                   labels=c('VLOW', 'LOW', 'MOD', 'HIGH'))
+
+states_new$POVERTY_levels <- cut(states_new$POVERTY,
+                   breaks=c(-Inf, quantile(states_new$POVERTY, 0.25), median(states_new$POVERTY), quantile(states_new$POVERTY, 0.75), Inf),
+                   labels=c('VLOW', 'LOW', 'MOD', 'HIGH'))
+
+states_new$MENTAL_levels <- cut(states_new$MENTAL,
+                   breaks=c(-Inf, quantile(states_new$MENTAL, 0.25), median(states_new$MENTAL), quantile(states_new$MENTAL, 0.75), Inf),
+                   labels=c('VLOW', 'LOW', 'MOD', 'HIGH'))
+```
+
+
+```{r}
+#Graph5: Obese v.s Poverty rate by region
+mosaic(POVERTY_levels~REGION+OBESE_levels, data = states_new,
+direction = c("h", "v","h"),
+rot_labels = c(0, 0),
+highlighting_fill=c('#87CEEB', '#C85A89', '#D2691E', "#FFD700"))
+```
+>COMMENTARY5
+
+```{r}
+#Graph6: Mental v.s Crime by region
+mosaic(CRIME_levels~REGION+MENTAL_levels, data = states_new,
+direction = c("h", "v","h"),
+rot_labels = c(0, 0),
+highlighting_fill=c('#87CEEB', '#C85A89', '#D2691E', "#FFD700"))
+```
+>COMMENTARY6
+
+```{r}
+#Graph7: Biplot for all features
+
+draw_biplot(states_new)+ 
+  ggplot2::ggtitle("Biplot of states on different features")
+```
+>COMMENTARY7
+
+```{r}
+#Graph8: Scatterplot Matrix between the important features
+
+ggpairs(states_new[,c("GINI", "OBESE","POVERTY","CRIME","INCOME","MENTAL","INFM","HSGRADUATE_rate","EMPLOYMENT_rate")])
+```
+>COMMENTARY8
+
+```{r}
+#Graph9: Biplot for young couples
+
+states_1 <- states_new[,c("STATES","MENTAL","GINI","INCOME","EMPLOYMENT_rate")]
+draw_biplot(states_1)+ 
+  ggplot2::ggtitle("Biplot for young couples")
+```
+>COMMENTARY9
+
+```{r}
+#Graph10: Biplot for families 
+
+states_2 <- states_new[,c("STATES","INFM","U18_rate","HSGRADUATE_rate")]
+draw_biplot(states_2)+ 
+  ggplot2::ggtitle("Biplot for families ")
+```
+>COMMENTARY10
+
+
+
+
+
