@@ -23,17 +23,27 @@ states <- read.csv("States.csv")
 # Create a data frame with state and region columns
 
 state_region_mapping <- data.frame(
-  state = c("Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado", "Connecticut", "Delaware", "Florida", "Georgia",
-            "Hawaii", "Idaho", "Illinois", "Indiana", "Iowa", "Kansas", "Kentucky", "Louisiana", "Maine", "Maryland",
-            "Massachusetts", "Michigan", "Minnesota", "Mississippi", "Missouri", "Montana", "Nebraska", "Nevada", "New Hampshire", "New Jersey",
-            "New Mexico", "New York", "North Carolina", "North Dakota", "Ohio", "Oklahoma", "Oregon", "Pennsylvania", "Rhode Island", "South Carolina",
-            "South Dakota", "Tennessee", "Texas", "Utah", "Vermont", "Virginia", "Washington", "West Virginia", "Wisconsin", "Wyoming", "District of Columbia"),
-  region = c("South", "West", "West", "South", "West", "West", "Northeast", "Northeast", "South", "South",
-             "West", "West", "Midwest", "Midwest", "Midwest", "Midwest", "South", "South", "Northeast", "South",
-             "Northeast", "Midwest", "Midwest", "South", "Midwest", "Midwest", "West", "Midwest", "West", "Northeast",
-             "Northeast", "West", "Northeast", "South", "Midwest", "South", "West", "Northeast", "Northeast", "South",
-             "Midwest", "South", "West", "West", "Northeast", "South", "West", "South", "West", "South", "Midwest")
+  state = c("Connecticut", "Maine", "Massachusetts", "New Hampshire", "Rhode Island", "Vermont",
+            "New Jersey", "New York", "Pennsylvania",
+            "Illinois", "Indiana", "Michigan", "Ohio", "Wisconsin",
+            "Iowa", "Kansas", "Minnesota", "Missouri", "Nebraska", "North Dakota", "South Dakota",
+            "Delaware", "Florida", "Georgia", "Maryland", "North Carolina", "South Carolina", "Virginia",
+            "District of Columbia", "West Virginia", "Alabama", "Kentucky", "Mississippi", "Tennessee",
+            "Arkansas", "Louisiana", "Oklahoma", "Texas", "Arizona",
+            "Colorado", "Idaho", "Montana", "Nevada","New Mexico", 
+            "Utah", "Wyoming", "Alaska", "California", "Hawaii", "Oregon", "Washington"),
+  
+  region = c("Northeast", "Northeast", "Northeast", "Northeast", "Northeast", "Northeast",
+             "Northeast", "Northeast", "Northeast",
+             "Midwest", "Midwest", "Midwest", "Midwest", "Midwest",
+             "Midwest", "Midwest", "Midwest", "Midwest", "Midwest", "Midwest", "Midwest",
+             "South", "South", "South", "South", "South", "South", "South",
+             "South", "South", "South", "South", "South", "South", "South",
+             "South", "South", "South", "South",
+             "West", "West", "West", "West", "West",
+             "West", "West", "West", "West", "West", "West","West")
 )
+
 merged_data <- merge(states, state_region_mapping, by.x = "STATES", by.y = "state")
 
 # Create a named vector for mapping
@@ -70,7 +80,9 @@ ggplot(states, aes(x=reorder(STATES,desc(POPULATION/1000)),y=POPULATION/1000))+
   theme(axis.text.y = element_text(size = 6))+
   theme(axis.text.x = element_text(size = 6, angle = 30, vjust = 0.5, hjust = 1))
 ```
->COMMENTARY1
+>This is an overview of population distribution across different regions of the United States, with each subgraph representing one of the four major regions: Midwest, Northeast, South, and West. The y-axis of each graph shows the population in thousands.
+> We can see that the South and West regions show states with very high populations, suggesting these regions have certain attractions, possibly including warmer climates, growing economies, or industry presence such technology.There are also some states have significantly higher populations than others within the same region, which can be considered as an indication for of active economic environment or desirable living conditions. For example, California in the West and Texas and Florida in the South ranking the first within their regions, with the population of close to 40,000 thousands and over 20,000 thousands.
+>States with fewer people living in them often depend more on farming or using things from nature, like minerals and forests, for their money. They usually don't have big cities, and some can be hard to get to because of where they are on the map, like Alaska and Wyoming. This can also suit to the preference of certain group of population when consider moving around the states. 
 
 ```{r}
 #Graph2: Demographic Overview Across the States2
@@ -91,7 +103,10 @@ ggplot(states_long, aes(x = reorder(STATES,Population), y = Population/1000, fil
   coord_flip()+
   facet_wrap(~ REGION, scales = "free_y")
 ```
->COMMENTARY2
+>The above set of bar graphs represent the distribution of two age groups, teenagers (people with age under 18, shown in blue) and seniors (people with age over 60, shown in red), across U.S. states within four regions, in the unit of thousands. In general, a larger proportion of teenagers suggests a large potential in robust population growth, the work force growth, abundant educational and job opporunities. Whereas a larger proportion of seniors suggest that these places might be popular for retirement, and they may have a bigger need for healthcare services and retirement homes. The balance between two groups is also very important, in terms of whether the population pyramid is stable so that the challenges of supporting the seniors wound't arise.
+>From the graph, we can identify a genereal trend of relative prominance in the senior population,for which is more notable in the northeast region, indicating a preferable environment for elders and for possible historical reasons. The states with most substaintial teenage population is texas, and states with the most substaintial senior population is florida. The high in teenage population might be due to higher birth rates, migration of younger families, or both. The significant number of seniors in Florida is consistent with its reputation as a retirement destination due to its warm climate and tax-friendly policies for retirees.
+>In the Midwest region, the states has a relatively balanced the populations of teenagers and seniors, suggesting a stable demographic.This can be a result from lacking of both incoming and outgoing population due to family-oriented cultrual tradition in Midwest.This can be considered somewhat less prefereable enviornment for movers in terms of lack of fluidty and diversity in population and hence social classes, but the stability can be good for those who wants to settle down in a place for long term.
+
 
 ```{r}
 #Graph3: Income Distribution By Region
@@ -99,10 +114,25 @@ ggplot(states_long, aes(x = reorder(STATES,Population), y = Population/1000, fil
 ggplot(states, aes(x = INCOME, y = REGION)) +
   geom_boxplot(varwidth = TRUE) +
   geom_density_ridges(aes(fill = REGION), scale = 0.9, alpha = 0.6) +
-  labs(title = "Distribution of Personal Income Per Capita by Region(USD)")
+  labs(title = "Distribution of Annual Personal Income by Region(USD)")
 ```
 
->COMMENTARY3
+>This graph is a overview of Annual personal income distribution by region. The personal income is considered as a straight forward indication for the economic well-being and financial prosperity of the local communities. From the boxplot, we can see that the northeast region has the highest 75% percentile, median, and 25% percential among all the regions, where the south region has the lowest for all.
+>The West and Norteast region tends to have larger spread than the South and Midwest Region, this can be consider as a higher divide in income inequality, but also an indication for the dynamic in different opporunties. This is consistent with our common knwoledge, where the west is considered to be a tech hub and the northeast is considered to be the financial hub. These are the two highest paying industry in the U.S and such that result in a higher annual personal income in these region, which means more job opportuinies and a better career development path.
+>The smallest variability of income in the Midwest region correspond to the high stability in the population structure as suggested in the graph 2, which means a rather  
+
+```{r}
+#Graph4: Income Distribution By Region
+
+ggplot(states, aes(x=reorder(STATES,desc(INCOME)),y=INCOME))+
+  geom_col(fill = "lightblue")+
+  facet_wrap(~REGION, scales = "free")+
+  labs(x ="State", y="Income(USD)",title = "Distribution of Annual Personal Income Per Capita across U.S by Region")+
+  theme(axis.text.y = element_text(size = 6))+
+  theme(axis.text.x = element_text(size = 6, angle = 30, vjust = 0.5, hjust = 1))
+```
+
+
 
 ```{r}
 #Graph4: GINI Index across states
