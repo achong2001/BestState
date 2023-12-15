@@ -48,6 +48,15 @@ states$REGION <- state_to_region[states$STATES]
 states$INCOME <- gsub(",", "", states$INCOME)
 states$INCOME <- as.numeric(states$INCOME)
 
+states$POPULATION <- gsub(",", "", states$POPULATION)
+states$POPULATION <- as.numeric(states$POPULATION)
+
+states$U18 <- gsub(",", "", states$U18)
+states$U18 <- as.numeric(states$U18)
+
+states$OVER60 <- gsub(",", "", states$OVER60)
+states$OVER60 <- as.numeric(states$OVER60)
+
 states$REGION <- as.character(states$REGION)
 ```
 
@@ -111,29 +120,7 @@ ggplot(states, aes(x = GINI, y = reorder(STATES, GINI))) +
 
 ```{r}
 
-#Rescale Crime and Mental from 0 to 1 by min-max scaling 
-min_value <- min(states_new$CRIME)
-max_value <- max(states_new$CRIME)
-states_new$CRIME<- (states_new$CRIME - min_value) / (max_value - min_value)
-
-min_value <- min(states$MENTAL)
-max_value <- max(states$MENTAL)
-states$MENTAL <- (states$MENTAL - min_value) / (max_value - min_value)
-
-```
-
-```{r}
-
 #Reformat the columns
-states$POPULATION <- gsub(",", "", states$POPULATION)
-states$POPULATION <- as.numeric(states$POPULATION)
-
-states$U18 <- gsub(",", "", states$U18)
-states$U18 <- as.numeric(states$U18)
-
-states$OVER60 <- gsub(",", "", states$OVER60)
-states$OVER60 <- as.numeric(states$OVER60)
-
 states$HSGRADUATE <- gsub(",", "", states$HSGRADUATE)
 states$HSGRADUATE <- as.numeric(states$HSGRADUATE)
 
@@ -148,10 +135,6 @@ states$U18_rate <- (states$U18) / (states$POPULATION)
 states$OVER60_rate <- (states$OVER60) / (states$POPULATION)
 states$HSGRADUATE_rate <- (states$HSGRADUATE) / (states$POPULATION)
 states$EMPLOYMENT_rate <- (states$EMPLOYMENT) / (states$POPULATION)
-states$OBESE <- (states$OBESE) / 100
-states$POVERTY <- states$POVERTY/ 100
-
-states$INFM <- states$INFM/ 100
 ```
 
 
@@ -161,6 +144,25 @@ states$INFM <- states$INFM/ 100
 states_new <-states[, c("STATES", "GINI", "OBESE","POVERTY","CRIME","INCOME","MENTAL","INFM","U18_rate","OVER60_rate","HSGRADUATE_rate","EMPLOYMENT_rate","REGION")]
 ```
 
+```{r}
+#Convert to Percentage
+states_new$OBESE <- (states_new$OBESE) / 100
+states_new$POVERTY <- states_new$POVERTY/ 100
+states_new$INFM <- states_new$INFM/ 100
+```
+
+```{r}
+
+#Rescale Crime and Mental from 0 to 1 by min-max scaling 
+min_value <- min(states_new$CRIME)
+max_value <- max(states_new$CRIME)
+states_new$CRIME<- (states_new$CRIME - min_value) / (max_value - min_value)
+
+min_value <- min(states_new$MENTAL)
+max_value <- max(states_new$MENTAL)
+states_new$MENTAL <- (states_new$MENTAL - min_value) / (max_value - min_value)
+
+```
 
 ```{r}
 #Create Levels for Obese, Crime, Poverty, mental based on their quantiles 
