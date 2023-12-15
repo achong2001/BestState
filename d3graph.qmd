@@ -4,10 +4,22 @@
   * {
     font-family: sans-serif;
   }
+  
+  .white-button {
+    color: white;
+    border: 1px solid white;
+    background-color: #13274F;
+}
+
 </style> 
 
 <div id="plot">
 </div>
 
+<p></p>
+<button type="button" class="white-button" onclick="add()">Add Bar</button>
+<button type="button" class="white-button" onclick="remove()">Remove Bar</button>
+
 <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
 <script src="scripts/myscript.js"></script>
+
