@@ -17,9 +17,7 @@ library(redav)
 
 ```{r}
 states <- read.csv("States.csv")
-```
 
-```{r}
 # Create a data frame with state and region columns
 
 state_region_mapping <- data.frame(
@@ -50,10 +48,7 @@ merged_data <- merge(states, state_region_mapping, by.x = "STATES", by.y = "stat
 state_to_region <- setNames(state_region_mapping$region, state_region_mapping$state)
 
 states$REGION <- state_to_region[states$STATES]
-```
 
-
-```{r}
 #Reformatting the dataset 
 states$INCOME <- gsub(",", "", states$INCOME)
 states$INCOME <- as.numeric(states$INCOME)
@@ -65,12 +60,14 @@ states$U18 <- gsub(",", "", states$U18)
 states$U18 <- as.numeric(states$U18)
 
 states$OVER60 <- gsub(",", "", states$OVER60)
-States$OVER60 <- as.numeric(states$OVER60)
+states$OVER60 <- as.numeric(states$OVER60)
 
 states$REGION <- as.character(states$REGION)
 ```
 
->Graph1: Demographic Overview Across the States
+## Overview 
+
+## Graph1&2: Demographic Overview Across the States
 
 ```{r}
 ggplot(states, aes(x=reorder(STATES,desc(POPULATION/1000)),y=POPULATION/1000))+
@@ -83,8 +80,6 @@ ggplot(states, aes(x=reorder(STATES,desc(POPULATION/1000)),y=POPULATION/1000))+
 >This is an overview of population distribution across different regions of the United States, with each subgraph representing one of the four major regions: Midwest, Northeast, South, and West. The y-axis of each graph shows the population in thousands.
 > We can see that the South and West regions show states with very high populations, suggesting these regions have certain attractions, possibly including warmer climates, growing economies, or industry presence such technology.There are also some states have significantly higher populations than others within the same region, which can be considered as an indication for of active economic environment or desirable living conditions. For example, California in the West and Texas and Florida in the South ranking the first within their regions, with the population of close to 40,000 thousands and over 20,000 thousands.
 >States with fewer people living in them often depend more on farming or using things from nature, like minerals and forests, for their money. They usually don't have big cities, and some can be hard to get to because of where they are on the map, like Alaska and Wyoming. This can also suit to the preference of certain group of population when consider moving around the states. 
-
->Graph2: Demographic Overview Across the States 
 
 ```{r}
 
@@ -109,7 +104,7 @@ ggplot(states_long, aes(x = reorder(STATES,Population), y = Population/1000, fil
 >In the Midwest region, the states has a relatively balanced the populations of teenagers and seniors, suggesting a stable demographic.This can be a result from lacking of both incoming and outgoing population due to family-oriented cultrual tradition in Midwest.This can be considered somewhat less prefereable enviornment for movers in terms of lack of fluidty and diversity in population and hence social classes, but the stability can be good for those who wants to settle down in a place for long term.
 
 
->Graph3: Income Distribution By Region
+## Graph3: Income Distribution By Region
 
 ```{r}
 ggplot(states, aes(x = INCOME, y = REGION)) +
@@ -118,7 +113,7 @@ ggplot(states, aes(x = INCOME, y = REGION)) +
   labs(title = "Distribution of Annual Personal Income by Region(USD)")
 ```
 
->Graph4: Income Distribution By Region
+## Graph4: Income Distribution By Region
 
 ```{r}
 ggplot(states, aes(x=reorder(STATES,desc(INCOME)),y=INCOME))+
@@ -137,7 +132,7 @@ ggplot(states, aes(x=reorder(STATES,desc(INCOME)),y=INCOME))+
 
 
 
->Graph5: GINI Index across states
+## Graph5: GINI Index across states
 
 ```{r}
 
@@ -226,7 +221,7 @@ states_new$MENTAL_levels <- cut(states_new$MENTAL,
 
 > For the two mosaic plots below, we converted the poverty, obese, mental, and crime columns into columns with four categorical levels: VLOW, LOW, MOD, and HIGH. Where VLOW correspond to the data that are lower than the Minimum, LOW correspond to the data points that are between Minimum and the 25% percentile, MOD correspond to the data points that are between 25% percentile and median, HIGH correspond to the data points that are above 75% percentile.  
 
->Graph6: Obese v.s Poverty rate by region
+## Graph6: Obese v.s Poverty rate by region
 
 ```{r}
 
@@ -241,7 +236,7 @@ highlighting_fill=c('#87CEEB', '#C85A89', '#D2691E', "#FFD700"))
 >Second,Northeast and West has a decreasing proportion of obesity level going from VLOW to HIGH, which is an indication for good health condition of people in these two regions. the high povety level didn't occur in northeast region for the VLOW and LOW obesity levels, whereas it only occured in VLOW and MOD for the west, showing a relatively different association.  
 >Third, the Midwest Has a rather balanced distribution of four types of obesity level, and relatively balanced distribution of poverty level within the types of obesity level, showing a stability in the overall structure. 
 
->Graph7: Mental v.s Crime by region
+## Graph7: Mental v.s Crime by region
 
 ```{r}
 mosaic(CRIME_levels~REGION+MENTAL_levels, data = states_new,
@@ -254,7 +249,7 @@ highlighting_fill=c('#87CEEB', '#C85A89', '#D2691E', "#FFD700"))
 > South Region has a relatively balanced distribution across the mental health levels, with no single category overwhelmingly dominant, and it is a good sign that the high mental helth is not in strong association with high crime rate, which can imply that certian safety or support measure is in place.
 > The West Region has higher proportion on the MOD and HIGH mental health level, showcasing the disadvantages for those who need care in mental health. The MOD and HIGH crime level is also growing with the increase in the mental health level, which follows the expected association. 
 
->Graph8: Scatterplot Matrix between the important features
+## Graph8: Scatterplot Matrix between the important features
 
 ```{r}
 ggpairs(states_new[,c("GINI", "OBESE","POVERTY","CRIME","INCOME","MENTAL","INFM","HSGRADUATE_rate","EMPLOYMENT_rate")])
@@ -264,7 +259,7 @@ ggpairs(states_new[,c("GINI", "OBESE","POVERTY","CRIME","INCOME","MENTAL","INFM"
 >This indicates states with higher poverty rates tend to have higher infant mortality rates, states with higher employment rates tend to have higher income levels, and vice versa. This correlation makes sensebecause economic factors, such as employment rates and income levels, have a significant impact on the overall well-being of individuals and families. States with higher poverty rates often struggle to provide adequate healthcare, nutrition, and living conditions, which can result in higher infant mortality rates. Conversely, states with higher employment rates tend to have a more stable economic environment, which can lead to higher income levels and better access to healthcare, ultimately contributing to lower infant mortality rates.  
 >Note that correlation doesn't mean causation, but this graph can provide movers with information on what to watch out when picking states to move to, for example a location with low income can come with high infant mortality, so generally the states with higher personal income can be more prederrable for all.  
 
->Graph9: Biplot for all features
+## Graph9: Biplot for all features
 
 ```{r}
 draw_biplot(states_new)+ 
@@ -275,7 +270,7 @@ draw_biplot(states_new)+
 >This graph also showcases several underperforming states, specifically ones that reside in the South, such as Mississippi, Louisiana, and Arkansas. These states are located in the bottom left of the biplot, where vectors like Poverty, Obesity, Crime, and other unhealthy features point towards. The overall environmment of these states presents unhealthy living habits in all aspects of living (financial stability, safety, and health).
 >Finally, we must mention the best performing states in the graph, which include the states that are in the top right of the graph. These states are farthest from the unhealthy and unsafe features while also being the highest in financial stability. New Hampshire and Vermont seem to offer the best balance and overall wellbeing of its residents in these aspects.
 
->Graph10: Biplot for young couples
+## Graph10: Biplot for young couples
 
 ```{r}
 states_1 <- states_new[,c("STATES","MENTAL","GINI","INCOME","EMPLOYMENT_rate")]
@@ -286,7 +281,7 @@ draw_biplot(states_1)+
 >When prioritizing the needs of young couples looking to move to a new state, we use this biplot to see how their necessary features correlate. Our first observation is that employment rate and mental health seem to be uncorrelated, where there vectors are nearly perpendicular to one another. This somewhat reflects the correlation value seen in our scatterplot matrix, where they have a correlation of -.109. We were surprised by their uncorrelated relationship because we expect their vectors to be nearly opposite, such that less employment means more mental illnesses, and vice versa. This negative relationship is more pronounced between income and mental health, so residents may not necessarily be depressed about not having a job but rather not having enough income. Of course, there are other serious mental illnesses besides just depression and anxiety that are factored, so a young couple should not have to worry about a state with low average income giving them increased likelihood of mental health. Another observation with these correlated vectors is that Gini and Mental have a nearly negative relationship; however, the scatterplot matrix tells us that they have low correlation. We believe that Gini and Mental is more likely to be negatively correlated because an uneven distribution of wealth may cause more mental illnesses, where a certain group of people have an unfair disadvantage to scale their income.
 >New Hampshire seems to provide the most opportunity for young couples by providing high financial stability while also having an even income distribution with a low gini. This means that young couples are more likely to scale higher in the socioeconomic rankings in New Hampshire. New York has the most inequality of income while also having the higher average income with low employment, which makes it more less worthwhile for young couples to move to when compared to New Hampshire. Thus, the big city life would provide more risk for young couples than a quiet, calm suburban life.
 
->Graph11: Biplot for families 
+## Graph11: Biplot for families 
 ```{r}
 states_2 <- states_new[,c("STATES","INFM","U18_rate","HSGRADUATE_rate")]
 draw_biplot(states_2)+ 

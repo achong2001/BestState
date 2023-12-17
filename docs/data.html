@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>The Best US State - 5&nbsp; Conclusion</title>
+<title>The Best US State - 2&nbsp; Data</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -30,7 +64,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./d3graph.html" rel="prev">
+<link href="./results.html" rel="next">
+<link href="./index.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -73,7 +108,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./conclusion.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Conclusion</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./data.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Data</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -109,7 +144,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./data.html" class="sidebar-item-text sidebar-link">
+  <a href="./data.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Data</span></span></a>
   </div>
 </li>
@@ -127,7 +162,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./conclusion.html" class="sidebar-item-text sidebar-link active">
+  <a href="./conclusion.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Conclusion</span></span></a>
   </div>
 </li>
@@ -137,14 +172,22 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#technical-description" id="toc-technical-description" class="nav-link active" data-scroll-target="#technical-description"><span class="header-section-number">2.1</span> Technical Description</a></li>
+  <li><a href="#research-plan" id="toc-research-plan" class="nav-link" data-scroll-target="#research-plan"><span class="header-section-number">2.2</span> Research Plan</a></li>
+  <li><a href="#missing-value-analysis" id="toc-missing-value-analysis" class="nav-link" data-scroll-target="#missing-value-analysis"><span class="header-section-number">2.3</span> Missing value analysis</a></li>
+  </ul>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/achong2001/BestState/edit/main/data.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/achong2001/BestState/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Conclusion</span></h1>
+<h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Data</span></h1>
 </div>
 
 
@@ -159,11 +202,106 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
+<section id="technical-description" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="technical-description"><span class="header-section-number">2.1</span> Technical Description</h2>
 <blockquote class="blockquote">
-<p>From our overall analysis of our graphs, we conclude that New Hampshire provides the best overall enviornment for any new homeowner. From our final two biplots, we showcased how this state would great benefit their immediate needs. Furthermore, from our overall biplot, we see that New Hampshire is one of the states with the highest rate of seniors residing, which makes it a much more friendly enviornment for other seniors. With a relatively low population, they have nearly double the amount of seniors than children living there, which further supports our main takeaway. Another key takeaway was that the Southern region and states typically performed the worst in our graphs with low income, high gini, and poor health and safety levels. This means that better institution needs to be inplace for these states to provide as high quality of living as the other states. One of our main points of argument was the fact that D.C was included in the southern region, where we based these regions off of CDC’s grouping of states. We believe their data reflects more of the states in the Northeast. This means that our findings may be less pronounced in supporting our claim that the South provides an unstable enviornment for all new homeowners, where the data is more reflective of the other states as well. In the future, we hope to include more features that can better dictate which states are the best for all types of demographics of homeowners. Our data is heavily limited with no more than 10 features, but our study was mainly focused on factors that benefit our demographic of younger adulthood.</p>
+<p>In order answer the broad question of which is the best states within U.S to live in, we will assess factors across different living aspects that can provide indication od desirability for different households, which include economics, education, health, and safety indicators. Thus we have collected the data from multiple sources(U.S.Census Bureau, Federal Bureau of Investigation, Centers for Disease Control and Prevention, US Department of Commerce, and Mental Health America) where each being the authority on the given asepct.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>The dataset has 50 rows and 13 columns, where each rows repersent each states in the United States, excluding minor island, and each column repersent each indictor of the living condition in each state(e.g population, crime rates, high school graudation rates.) All the data are collected from the year of 2022, given that this is the most recent full year.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>POPULATION, U18, OVER60, POVERTY, HSGRADUATE, EMPLOYMENT, and GINI columns are gathered from U.S. Census Bureau for 50 states across United States. All the columns here are presented in termns of number of population excpet for GINI, which is an index data that goes from 0 to 1 The data from U.S. Census Bureau are collected through the census survey each year, such that the result are updated every 12 months.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>OBESE and INFM columns are collected from cdc, the Centers for Disease Control and Prevention for 50 states across United States. These two columns are presented in terms of the percentage. Their data are collected from various health insititutions including hospitals and local doctor’s office. The data is nomrally updated yearly.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>The MENTAL column is collected from Mental Health America. This is a ranking goes from 1- 51. The ranking is Made up by 7 measures combined,including Adults with Any Mental Illness (AMI), Adults with Substance Use Disorder in the Past Year, Adults with Serious Thoughts of Suicide, Adults with AMI who Did Not Receive Treatment, Adults with AMI Reporting Unmet Need, Adults with AMI who are Uninsured, and Adults with Cognitive Disability Who Could Not See a Doctor Due to Costs. States that are ranked 1-10 have lower prevalence of mental illness and higher rates of access to care for adults. States that are ranked 39-51 indicate that adults have higher prevalence of mental illness and lower rates of access to care.All of the data presented in the MHA is collected through the MHA Online Screening Program.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>The INCOME column is collected from Bureau of Economic Analysis. It presents the per capita personal income in U.S dollars across 50 states. Most data from bea are sourced from surveies and sponsored by fedueral agencies.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>The CRIME column is collected from Federal Bureau of Investigation. Note that this column is not in percentage or in numbers while it present the number of reperted crime per 100,000 of the population. The data in FBI are collected from the monthly reports from their agencies.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>Below are the description for each columns including their original sources:</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>STATES: Names of the 50 states in the U.S, excluding minor islands.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>POPULATION: Number of population in each state of United States as of 2022.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>U18: Number of population who is under the age of 18 in each state of United States as of 2022.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>OVER60: Number of population who is over the age of 60 in each state of United States as of 2022.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>POVERTY: percentage of people below poverty in the U.S by states in 2022.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>HSGRADUATE:Number of population with high school diploma or equivalence in each state of United States as of 2022.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>EMPLOYMENT: Number of employed population in each state of United States as of 2022.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>Original source for all above:https://data.census.gov/table/ACSST1Y2022.S1701?q=poverty%20by%20state</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>OBESE: Percentage of adults with obesity in the United States as of 2022 by state.Original source: https://www.statista.com/statistics/378988/us-obesity-rate-by-state/</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>INFM: The infant mortality rates by states in 2022. Original source:https://www.cdc.gov/nchs/data/vsrr/vsrr033.pdf</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>MENTAL: The ranking for Adult mental health by states in 2022. Original Source: https://mhanational.org/issues/2022/mental-health-america-adult-data</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>INCOME: Personal income Per capita in the United States in 2022, by state (in U.S. dollars).Original source: https://www.statista.com/statistics/303555/us-per-capita-personal-income/</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>GINI: The Gini index of income inequality in the U.S by states in 2022. Original source: https://data.census.gov/table?q=gini%20index&amp;g=010XX00US&amp;y=2021</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>CRIME: Reported violent crime rate in the United States in 2022, by state (per 100,000 of the population). Original source: https://www.statista.com/statistics/200445/reported-violent-crime-rate-in-the-us-states/</p>
+</blockquote>
+</section>
+<section id="research-plan" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="research-plan"><span class="header-section-number">2.2</span> Research Plan</h2>
+<blockquote class="blockquote">
+<p>Our current data will provide a baseline answer for our research questions in determining which states are best for specific household circumstances. Economics, education, health, and safety indicators are four of the most important factors that new homeowners would consider. Retirees most likely prefer to live in states with the best health features above all others, so a higher health indicator would include lower crime and poverty rates. Families with children may prioritize education the most, where there are higher rates of high school graduates and under 18 residents in order to provide a more kid-friendly environment. Young couples may prioritize states with higher gini indexes and higher employment rates because they would focus on financial stability at their age to pay off debts and potentially save to have children. Gini index measures the income distribution across the state’s population. A value of 0 represents perfect equality (straight diagonal line) for an equal balance of people in all income brackets whereas a curved line represents imbalance in certain brackets. A value of 1 represents perfect inequality, where only the last person in the entire population gets all of the wealth, thus a straight line is formed at 100% of population.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>Our demographic and peers would lean more towards the category of young couples, where we prioritize financial stability. After visualizing the states that offer the most financial stability from our study, we can then filter our job search on locations based at these states, in which this process will provide us with an improve quality of life.</p>
+</blockquote>
+</section>
+<section id="missing-value-analysis" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="missing-value-analysis"><span class="header-section-number">2.3</span> Missing value analysis</h2>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(naniar)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>states <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"States.csv"</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">vis_miss</span>(states) <span class="sc">+</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Percentage of Missing Values by Columns"</span>)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(p)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="data_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<blockquote class="blockquote">
+<p>As presented in the graph above, we can see that there is 0% of missing value for each columns and it means that this is a complete dataset. This result is expected due to two reasons: First, this is a rather small dataset with 50 rows and 13 columns so that the data is likely to be avaliable given the size. Second, considering the authority of the sources of data, including fbi, cdc, and U.S. Census Bureau, which gaurenteed the quality and credibility of the data.</p>
 </blockquote>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -401,11 +539,14 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./d3graph.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Interactive graph</span></span>
+      <a href="./index.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="./results.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Results</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->
@@ -416,7 +557,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     </div>   
     <div class="nav-footer-center">
       &nbsp;
-    <div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/achong2001/BestState/edit/main/conclusion.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/achong2001/BestState/issues/new" class="toc-action">Report an issue</a></p></div></div></div>
+    </div>
     <div class="nav-footer-right">This book was built with <a href="https://quarto.org/">Quarto</a>.</div>
   </div>
 </footer>
